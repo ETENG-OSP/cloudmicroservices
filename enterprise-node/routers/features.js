@@ -5,6 +5,10 @@ var featureCtrl = require('../controllers/feature-neo');
 router
   .route('/features')
   .get(ensureAuthenticated, function(req, res) {
+    if (req.query.all) {
+      delete req.userId;
+    }
+
     featureCtrl
       .find({owner: req.userId})
       .then(function(entities) {
@@ -24,37 +28,37 @@ router
 router
   .route('/features/:id')
   .get(function(req, res) {
-    featureCtrl
+    return featureCtrl
       .findOne(req.params)
       .then(function(entity) {
         return res.json(entity);
-      })
+      });
   })
   .delete(function(req, res) {
-    featureCtrl
+    return featureCtrl
       .destroy(req.params.id)
       .then(function() {
         return res.json('ok');
       });
   })
   .put(function(req, res) {
-    featureCtrl
+    return featureCtrl
       .update(req.params.id, req.body)
       .then(function(feature) {
         return res.json(feature);
-      })
+      });
   });
 
 router
   .route('/features/:featureId/applications/:appId/token')
   .get(function(req, res) {
-    featureCtrl
+    return featureCtrl
       .generateToken(req.params.featureId, req.params.appId)
       .then(function(token) {
         res.json({
           token: token
         });
       });
-  })
+  });
 
 module.exports = router;

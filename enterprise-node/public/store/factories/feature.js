@@ -3,7 +3,7 @@ angular
   .factory('Feature', FeatureFactory);
 
 function FeatureFactory($resource) {
-  return $resource('/api/features/:id', {
+  return $resource('/api/features/:id?all=true', {
     id: '@id'
   });
 }
