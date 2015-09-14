@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-app="app">
+
+  <form onsubmit="return getSecret()">
+    <input name="username" placeholder="password">
+    <input name="password" type="password" placeholder="password">
+    <button>获取 Secret</button>
+  </form>
+
+  <script>
+  function getSecret() {
+    var req = new XMLHttpRequest();
+    req.open('POST', '/admin/login' + window.location.search);
+    req.onreadystatechange = function() {
+      console.log(this);
+    }
+    req.send();
+    return false;
+  }
+  </script>
+</body>
+</html>

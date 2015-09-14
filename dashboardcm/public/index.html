@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/ng-admin/build/ng-admin.min.css" />
+  <!-- endbower -->
+</head>
+<body ng-app="app">
+
+  <div ui-view></div>
+
+  <!-- bower:js -->
+  <script src="bower_components/ng-admin/build/ng-admin.min.js"></script>
+  <script src="bower_components/satellizer/satellizer.js"></script>
+  <!-- endbower -->
+  <script src="js/permission.js"></script>
+  <script src="js/platform.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/user.js"></script>
+  <script>
+  angular
+    .module('app', [
+      'ng-admin',
+      'satellizer'
+    ])
+    .config(appConfig)
+    .config(restConfig)
+    .config(routeConfig)
+    .run(appRun);
+
+  function routeConfig($stateProvider) {
+
+    $stateProvider
+
+      .state('login', {
+        url: '/login',
+        templateUrl: 'views/login.html'
+      })
+
+      .state('choose', {
+        url: '/choose',
+        templateUrl: 'views/choose.html'
+      });
+
+  }
+
+  function appRun($rootScope, $state, $auth) {
+    var loginStateName = 'login';
+    var chooseStateName = 'choose';
+
+    $rootScope.$on('$stateChangeStart', function(evt, toState) {
+      // console.log('check admin login');
+      if (!$auth.isAuthenticated()) {
+        console.log('not login');
+        if (toState.name === loginStateName) return;
+        evt.preventDefault();
+        return $state.go(loginStateName);
+      }
+
+      // console.log('check app choose');
+      if (!window.localStorage.usertoken || !window.localStorage.permissiontoken) {
+        console.log('not choose app');
+        if (toState.name === chooseStateName) return;
+        evt.preventDefault();
+        return $state.go(chooseStateName);
+      }
+    });
+  }
+
+  function appConfig(NgAdminConfigurationProvider) {
+    var nga = NgAdminConfigurationProvider;
+    var admin = nga.application('[用户与角色管理] ' + window.localStorage.getItem('appname'));
+
+    admin.addEntity(nga.entity('permissions'));
+    admin.addEntity(nga.entity('platforms'));
+    admin.addEntity(nga.entity('roles'));
+    admin.addEntity(nga.entity('users'));
+
+    permissionConfig(nga, admin);
+    platformConfig(nga, admin);
+    roleConfig(nga, admin);
+    userConfig(nga, admin);
+
+    admin
+      .menu()
+      .getChildByTitle('Roles')
+      .title('角色')
+      .icon('<span class="glyphicon glyphicon-list-alt"></span>');
+
+    admin
+      .menu()
+      .getChildByTitle('Users')
+      .title('用户')
+      .icon('<span class="glyphicon glyphicon-user"></span>');
+
+    admin
+      .menu()
+      .getChildByTitle('Permissions')
+      .title('权限')
+      .icon('<span class="glyphicon glyphicon-lock"></span>');
+
+    admin
+      .menu()
+      .getChildByTitle('Platforms')
+      .title('平台')
+      .icon('<span class="glyphicon glyphicon-phone"></span>');
+
+    admin.header([
+      '<div class="navbar-header">',
+        '<button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">',
+          '<span class="icon-bar"></span>',
+          '<span class="icon-bar"></span>',
+          '<span class="icon-bar"></span>',
+        '</button>',
+        '<a href="#" ng-click="appController.displayHome()" class="navbar-brand">{{ ::appController.applicationName }}</a>',
+      '</div>',
+      '<ul class="nav navbar-nav navbar-right">',
+        '<li>',
+          '<a ui-sref="choose">',
+            '<i class="glyphicon glyphicon-random"></i>',
+            ' ',
+            '切换应用',
+          '</a>',
+        '</li>',
+        '<li>',
+          '<a href onclick="delete localStorage.usertoken; delete localStorage.permissiontoken; delete localStorage.satellizer_token; location.assign(\'/\')">',
+            '<i class="glyphicon glyphicon-off"></i>',
+            ' ',
+            '退出登录',
+          '</a>',
+        '</li>',
+      '</ul>'
+    ].join(''));
+
+    nga.configure(admin);
+  }
+
+  function transformPopulate(RestangularProvider, modelName, populates) {
+    RestangularProvider.addElementTransformer(modelName, false, function(building) {
+
+      populates.forEach(function(populate) {
+        var populateData = building[populate];
+
+        if (Array.isArray(populateData)) {
+          building[populate] = populateData.map(function(values) {
+            return values.id;
+          });
+        }
+      });
+
+      return building;
+    });
+  }
+
+  function restConfig(RestangularProvider, $httpProvider) {
+    transformPopulate(RestangularProvider, 'permissions', ['roles']);
+    transformPopulate(RestangularProvider, 'roles', ['permissions', 'users']);
+    transformPopulate(RestangularProvider, 'users', ['roles']);
+
+    $httpProvider.interceptors.push('myInterceptor');
+
+    RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params, httpConfig) {
+      var token;
+      switch (what) {
+      case 'permissions':
+      case 'roles':
+      case 'platforms':
+        token = window.localStorage.getItem('permissiontoken');
+        break;
+      case 'users':
+        token = window.localStorage.getItem('usertoken');
+        break;
+      }
+
+      return {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      };
+    });
+  }
+  </script>
+  <script src="factories/alternate.js"></script>
+  <script src="controllers/application.js"></script>
+  <script src="controllers/auth-controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<div class="container" ng-controller="ApplicationController as appCtrl">
+
+  <h1>请选择要管理的应用</h1>
+  <ul>
+    <li ng-repeat="entity in entities">
+      <a href ng-click="appCtrl.choose(entity)">{{entity.name}}</a>
+    </li>
+  </ul>
+
+</div>

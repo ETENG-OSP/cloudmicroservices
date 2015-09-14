@@ -1,0 +1,23 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-admin": "~0.8.0",
+    "satellizer": "~0.12.5"
+  },
+  "overrides": {
+    "satellizer": {
+      "dependencies": {
+        "ng-admin": "~0.8.0"
+      }
+    }
+  }
+}

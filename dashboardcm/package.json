@@ -1,0 +1,34 @@
+{
+  "name": "enterprise-node",
+  "version": "1.0.0",
+  "description": "企业用户系统，具有权限。nodejs 实现，使用 jwt。",
+  "main": "startup.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "express": "^4.13.3",
+    "morgan": "^1.6.1",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "faker": "^3.0.1",
+    "mocha": "^2.2.5",
+    "should": "^7.1.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gengen1988/enterprise-node.git"
+  },
+  "author": "Gen Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gengen1988/enterprise-node/issues"
+  },
+  "homepage": "https://github.com/gengen1988/enterprise-node#readme"
+}

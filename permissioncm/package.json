@@ -1,0 +1,47 @@
+{
+  "name": "enterprise-node",
+  "version": "1.0.0",
+  "description": "企业用户系统，具有权限。nodejs 实现，使用 jwt。",
+  "main": "startup.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "bluebird": "^2.9.34",
+    "body-parser": "^1.13.3",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.0.5",
+    "moment": "^2.10.6",
+    "morgan": "^1.6.1",
+    "request": "^2.61.0",
+    "sails-disk": "^0.10.8",
+    "underscore": "^1.8.3",
+    "uuid": "^2.0.1",
+    "waterline": "^0.10.26"
+  },
+  "devDependencies": {
+    "faker": "^3.0.1",
+    "mocha": "^2.2.5",
+    "should": "^7.1.0"
+  },
+  "depercated": {
+    "acl": "^0.4.8",
+    "jwt-simple": "^0.3.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gengen1988/enterprise-node.git"
+  },
+  "author": "Gen Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gengen1988/enterprise-node/issues"
+  },
+  "homepage": "https://github.com/gengen1988/enterprise-node#readme"
+}
