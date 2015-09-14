@@ -28,6 +28,12 @@
     .config(appConfig)
     .config(restConfig)
     .config(routeConfig)
+    .constant('config', {
+      registryHost: 'http://localhost:3003/',
+      storeHost: 'http://localhost:3004/',
+      permissionHost: 'http://localhost:3001/',
+      authHost: 'http://localhost:3002/'
+    })
     .run(appRun);
 
   function routeConfig($stateProvider) {
@@ -69,7 +75,7 @@
     });
   }
 
-  function appConfig(NgAdminConfigurationProvider) {
+  function appConfig(NgAdminConfigurationProvider, config) {
     var nga = NgAdminConfigurationProvider;
     var admin = nga.application('[用户与角色管理] ' + window.localStorage.getItem('appname'));
 
@@ -78,10 +84,10 @@
     admin.addEntity(nga.entity('roles'));
     admin.addEntity(nga.entity('users'));
 
-    permissionConfig(nga, admin);
-    platformConfig(nga, admin);
-    roleConfig(nga, admin);
-    userConfig(nga, admin);
+    permissionConfig(nga, admin, config);
+    platformConfig(nga, admin, config);
+    roleConfig(nga, admin, config);
+    userConfig(nga, admin, config);
 
     admin
       .menu()

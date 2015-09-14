@@ -2,9 +2,9 @@ angular
   .module('app')
   .factory('myInterceptor', myInterceptor);
 
-function myInterceptor($injector, $q) {
-  var host = 'http://localhost:3002/';
-  var alternateHost = 'http://localhost:3001/';
+function myInterceptor($injector, $q, config) {
+  var host = config.authHost;
+  var alternateHost = config.permissionHost;
   var alternateToken = window.localStorage.getItem('permissiontoken');
 
   return {

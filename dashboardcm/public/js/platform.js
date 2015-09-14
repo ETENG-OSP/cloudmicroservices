@@ -1,6 +1,6 @@
-function platformConfig(nga, admin) {
+function platformConfig(nga, admin, config) {
   var platform = admin.getEntity('platforms');
-  platform.baseApiUrl('http://localhost:3001/api/');
+  platform.baseApiUrl(config.permissionHost + 'api/');
   platform
     .listView()
     .fields([

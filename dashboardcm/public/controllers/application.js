@@ -2,11 +2,12 @@ angular
   .module('app')
   .controller('ApplicationController', ApplicationController);
 
-function ApplicationController($http, $scope, $q, $auth) {
+function ApplicationController($http, $scope, $q, $auth, config) {
   this.$http = $http;
   this.$scope = $scope;
   this.$q = $q;
   this.$auth = $auth;
+  this.config = config;
   this.initialize();
 }
 
@@ -14,8 +15,9 @@ ApplicationController.prototype.initialize = function() {
   var $http = this.$http;
   var $scope = this.$scope;
   var $auth = this.$auth;
+  var config = this.config;
   $http
-    .get('//localhost:3003/api/applications', {
+    .get(config.registryHost + 'api/applications', {
       headers: {Authorization: 'Bearer ' + $auth.getToken()}
     })
     .then(function(res) {
@@ -28,13 +30,20 @@ ApplicationController.prototype.choose = function(application) {
   var $http = this.$http;
   var $q = this.$q;
   var $auth = this.$auth;
+  var config = this.config;
   return $q.all([
     $http.get(
-      '//localhost:3004/api/features/1/applications/' + application.id + '/token',
+      config.storeHost +
+        'api/features/1/applications/' +
+        application.id +
+        '/token',
       {headers: {Authorization: 'Bearer ' + $auth.getToken()}}
     ),
     $http.get(
-      '//localhost:3004/api/features/2/applications/' + application.id + '/token',
+      config.storeHost +
+        'api/features/2/applications/' +
+        application.id +
+        '/token',
       {headers: {Authorization: 'Bearer ' + $auth.getToken()}}
     )
   ]).then(function(results) {

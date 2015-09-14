@@ -1,6 +1,6 @@
-function permissionConfig(nga, admin) {
+function permissionConfig(nga, admin, config) {
   var permission = admin.getEntity('permissions');
-  permission.baseApiUrl('http://localhost:3001/api/');
+  permission.baseApiUrl(config.permissionHost + 'api/');
   permission
     .listView()
     .fields([
