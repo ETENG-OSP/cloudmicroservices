@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .directive('appSettings', AppSettingsDirective)
+  .directive('appSettings', AppSettingsDirective);
 
 function AppSettingsDirective() {
   return {

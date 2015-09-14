@@ -2,8 +2,8 @@ angular
   .module('app')
   .factory('Feature', FeatureFactory);
 
-function FeatureFactory($resource) {
-  return $resource('//localhost:3004/api/features/:id', {
+function FeatureFactory($resource, config) {
+  return $resource(config.storeHost + 'api/features/:id', {
     id: '@id'
   }, {
     update: {

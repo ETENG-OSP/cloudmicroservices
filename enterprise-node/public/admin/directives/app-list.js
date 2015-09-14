@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .directive('appList', AppListDirective)
+  .directive('appList', AppListDirective);
 
 function AppListDirective() {
   return {

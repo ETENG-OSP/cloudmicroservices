@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .directive('featureList', FeatureListDirective)
+  .directive('featureList', FeatureListDirective);
 
 function FeatureListDirective() {
   return {

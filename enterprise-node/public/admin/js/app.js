@@ -4,6 +4,9 @@ angular
     'ngResource',
     'satellizer'
   ])
+  .constanst('config', {
+    storeHost: 'http://localhost:3004/'
+  })
   .config(appConfig)
   .run(appRun);
 
@@ -36,11 +39,6 @@ function appConfig($stateProvider, $urlRouterProvider, $authProvider) {
       url: '/features/:id',
       templateUrl: 'partials/feature-settings.html'
     });
-
-    // .state('logout', {
-    //   url: '/logout',
-    //   controllers: 'AuthController'
-    // });
 
 }
 

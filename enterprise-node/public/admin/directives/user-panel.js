@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .directive('userPanel', UserPanelDirective)
+  .directive('userPanel', UserPanelDirective);
 
 function UserPanelDirective() {
   return {
