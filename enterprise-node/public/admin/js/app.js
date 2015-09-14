@@ -4,7 +4,7 @@ angular
     'ngResource',
     'satellizer'
   ])
-  .constanst('config', {
+  .constant('config', {
     storeHost: 'http://localhost:3004/'
   })
   .config(appConfig)
