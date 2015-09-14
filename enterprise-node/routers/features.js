@@ -6,10 +6,14 @@ router
   .route('/features')
   .get(ensureAuthenticated, function(req, res) {
     if (req.query.all) {
-      delete req.userId;
+      return featureCtrl
+        .find({owner: req.userId})
+        .then(function(entities) {
+          return res.json(entities);
+        });
     }
 
-    featureCtrl
+    return featureCtrl
       .find({owner: req.userId})
       .then(function(entities) {
         return res.json(entities);
