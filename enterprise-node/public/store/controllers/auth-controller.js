@@ -44,7 +44,7 @@ AuthController.prototype.signup = function(credentials) {
   return $auth
     .signup(credentials)
     .then(function() {
-      return $auth.login(credentials)
+      return $auth.login(credentials);
     })
     .then(function() {
       $state.go('home');

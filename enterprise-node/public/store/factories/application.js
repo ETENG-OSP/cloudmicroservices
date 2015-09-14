@@ -2,13 +2,15 @@ angular
   .module('app')
   .factory('Application', ApplicationFactory);
 
-function ApplicationFactory($resource) {
-  return $resource('//localhost:3003/api/applications/:appId', {
+function ApplicationFactory($resource, config) {
+
+  return $resource(config.registryHost + 'api/applications/:appId', {
     appId: '@id'
   }, {
     install: {
       method: 'POST',
-      url: '//localhost:3003/api/applications/:appId/features/:featureId'
+      url: config.registryHost + 'api/applications/:appId/features/:featureId'
     }
   });
+
 }

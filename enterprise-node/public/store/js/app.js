@@ -5,12 +5,15 @@ angular
     'ui.router',
     'ui.bootstrap'
   ])
+  .constant('config', {
+    registryHost: 'http://localhost:3003/'
+  })
   .config(appConfig);
 
-function appConfig($stateProvider, $urlRouterProvider, $authProvider) {
+function appConfig($stateProvider, $urlRouterProvider, $authProvider, config) {
 
-  $authProvider.loginUrl = '//localhost:3003/auth/login';
-  $authProvider.signupUrl = '//localhost:3003/auth/signup';
+  $authProvider.loginUrl = config.registryHost + 'auth/login';
+  $authProvider.signupUrl = config.registryHost + 'auth/signup';
 
   $urlRouterProvider.otherwise('/');
 

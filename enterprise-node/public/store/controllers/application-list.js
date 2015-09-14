@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .controller('ApplicationListController', ApplicationListController)
+  .controller('ApplicationListController', ApplicationListController);
 
 function ApplicationListController($scope, $state, Application) {
   this.$scope = $scope;
@@ -53,4 +53,4 @@ ApplicationListController.prototype.installTo = function(app) {
     .then(function() {
       console.log('ok');
     });
-}
+};
