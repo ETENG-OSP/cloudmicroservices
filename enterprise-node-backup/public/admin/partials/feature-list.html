@@ -1,0 +1,31 @@
+<div ng-controller="AuthController as auth">
+
+  <div ng-if="!auth.isAuthenticated()">
+    您尚未登录
+  </div>
+
+  <div ng-if="auth.isAuthenticated()">
+
+    <div ng-include="'partials/feature-creation.html'">
+    </div>
+
+    <h2>功能列表</h2>
+
+    <ul>
+      <li ng-repeat="entity in entities">
+
+        <h3>
+          {{entity.name}}
+          <small>#{{entity.id}}</small>
+        </h3>
+
+        <div>
+          <button ui-sref="featuresettings({id: entity.id})">设置</button>
+          <button ng-click="ctrl.remove(entity)">删除</button>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
+</div>

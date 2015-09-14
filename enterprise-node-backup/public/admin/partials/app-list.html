@@ -1,0 +1,30 @@
+<div ng-controller="AuthController as auth">
+
+  <div ng-if="!auth.isAuthenticated()">
+    您尚未登录
+  </div>
+
+  <div ng-if="auth.isAuthenticated()">
+
+    <div ng-include="'partials/application-creation.html'"></div>
+
+    <h2>应用列表</h2>
+
+    <ul>
+      <li ng-repeat="app in apps">
+
+        <h3>
+          {{app.name}}
+          <small>#{{app.id}}</small>
+        </h3>
+
+        <div>
+          <button ui-sref="appsettings({id: app.id})">设置</button>
+          <button ng-click="ctrl.removeApp(app)">删除</button>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,27 @@
+{
+  "name": "business",
+  "version": "0.0.0",
+  "homepage": "https://github.com/gengen1988/enterprise-node",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.13.3",
+    "angular-ui-router": "~0.2.15",
+    "bootswatch": "~3.3.5+2",
+    "qs": "https://github.com/hapijs/qs.git#4.0.0",
+    "satellizer": "~0.11.3",
+    "underscore": "~1.8.3"
+  },
+  "overrides": {
+    "bootswatch": {
+      "main": "paper/bootstrap.css",
+      "dependencies": {}
+    }
+  }
+}

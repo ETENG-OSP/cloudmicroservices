@@ -1,0 +1,9 @@
+<div class="modal-body" ng-controller="ApplicationListController as appCtrl">
+  <form ng-submit="appCtrl.installTo(target)">
+    <div class="form-group">
+      请选择应用：
+      <select class="form-control" ng-model="target" ng-options="app.name for app in entities"></select>
+    </div>
+    <button class="btn btn-primary">安装</button>
+  </form>
+</div>

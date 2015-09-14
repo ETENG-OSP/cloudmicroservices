@@ -1,0 +1,10 @@
+<!--
+可用方法：
+$etd.login(credentials)
+-->
+
+<form ng-submit="$etd.login(credentials)">
+  <input type="text" placeholder="username" ng-model="credentials.username">
+  <input type="password" placeholder="password" ng-model="credentials.password">
+  <button type="submit">Login</button>
+</form>

@@ -1,0 +1,5 @@
+<ul ng-controller="FeatureController as featureCtrl">
+  <li ng-repeat="feature in features">
+    <a ui-sref="detail({id: feature.id})">{{feature.name}}</a>
+  </li>
+</ul>

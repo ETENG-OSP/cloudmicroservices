@@ -1,0 +1,16 @@
+<!--
+可用变量：
+$etd.permissions
+-->
+
+<!-- Nested node template -->
+<script id="nodes_renderer.html" type="text/ng-template">
+  <a ng-href="#{{node.url}}">{{node.name}}</a>
+  <ul>
+    <li ng-repeat="node in node.nodes" ng-include="'nodes_renderer.html'"></li>
+  </ul>
+</script>
+
+<ul>
+  <li ng-repeat="node in permissions" ng-include="'nodes_renderer.html'"></li>
+</ul>

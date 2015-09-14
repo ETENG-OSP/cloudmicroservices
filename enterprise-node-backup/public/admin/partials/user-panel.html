@@ -1,0 +1,13 @@
+<div ng-controller="AuthController as auth">
+
+  <div ng-if="!auth.isAuthenticated()">
+    <a ui-sref="login">登录</a>
+    <a ui-sref="signup">注册</a>
+  </div>
+
+  <div ng-if="auth.isAuthenticated()">
+    当前管理员：#<a href>{{auth.getCurrentUser()}}</a>
+    <a href ng-click="auth.logout()">登出</a>
+  </div>
+
+</div>

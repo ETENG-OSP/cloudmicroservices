@@ -1,0 +1,23 @@
+<div>
+  <button>保存</button>
+</div>
+
+<div>
+  <h2>应用名称: <input ng-model="application.name"></h2>
+</div>
+
+<div>
+  <ul>
+    <li ng-repeat="feature in application.features">
+      <h3>
+        <a ng-href="{{feature.url}}?token={{feature.token}}">{{feature.name}}</a>
+      </h3>
+      <div>
+        token: {{feature.token}}
+      </div>
+      <button ng-click="feature.uninstall()">卸载</button>
+    </li>
+  </ul>
+</div>
+
+<a href="//localhost:3004">商店</a>

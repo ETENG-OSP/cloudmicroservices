@@ -1,0 +1,25 @@
+<form ng-controller="AuthController as auth" ng-submit="auth.signup(credentials)">
+  <fieldset>
+    <legend>管理员</legend>
+    <table>
+      <tr>
+        <td>用户名</td>
+        <td><input ng-model="credentials.username"></td>
+      </tr>
+      <tr>
+        <td>密码</td>
+        <td><input type="password" ng-model="credentials.password"></td>
+      </tr>
+      <tr>
+        <td>确认密码</td>
+        <td><input type="password" ng-model="credentials.confirmpassword"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button>注册</button>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+</form>

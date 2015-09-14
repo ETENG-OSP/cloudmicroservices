@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootswatch/paper/bootstrap.css" />
+  <!-- endbower -->
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <script src="js/config.js"></script>
+</head>
+<body ng-app="app" ng-controller="AppController as appCtrl">
+
+  <div class="container">
+    <div>
+      <script>
+        document.write('<a href="'
+        + config.authServer +
+        '/login.html?redirect='
+        + encodeURIComponent(window.location.href) +
+        '">登录</a>');
+      // <a href="/login.html?redirect=">登录</a>
+      </script>
+    </div>
+    <div permissions></div>
+    <div>
+      <button ng-click="appCtrl.refresh()">刷新</button>
+    </div>
+    <!-- <div login="login.html" onsuccess="appCtrl.loginSuccess(data)"></div> -->
+
+    <div ui-view></div>
+
+  </div>
+
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/qs/dist/qs.js"></script>
+  <script src="bower_components/satellizer/satellizer.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <!-- endbower -->
+
+  <script src="modules/permission/permission.js"></script>
+
+  <script src="js/orders.js"></script>
+  <script src="js/balance.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<div ng-controller="FeatureController as featureCtrl">
+
+  <form ng-submit="feature.$update()">
+
+    <div>
+      <button>保存</button>
+    </div>
+
+    <table>
+      <tr>
+        <td>名称</td>
+        <td><input ng-model="feature.name"></td>
+      </tr>
+      <tr>
+        <td>secret</td>
+        <td>{{feature.secret}}</td>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td><input ng-model="feature.url"></td>
+      </tr>
+      <tr>
+        <td>描述</td>
+        <td><textarea ng-model="feature.description"></textarea></td>
+      </tr>
+    </table>
+
+  </form>
+
+</div>

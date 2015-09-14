@@ -1,0 +1,14 @@
+{
+  "name": "auth",
+  "version": "0.0.0",
+  "homepage": "https://github.com/gengen1988/enterprise-node",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}
