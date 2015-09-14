@@ -7,7 +7,7 @@ router
   .get(ensureAuthenticated, function(req, res) {
     if (req.query.all) {
       return featureCtrl
-        .find({owner: req.userId})
+        .find()
         .then(function(entities) {
           return res.json(entities);
         });
