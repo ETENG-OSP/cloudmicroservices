@@ -1,6 +1,6 @@
-function roleConfig(nga, admin) {
+function roleConfig(nga, admin, config) {
   var role = admin.getEntity('roles');
-  role.baseApiUrl('http://localhost:3001/api/');
+  role.baseApiUrl(config.permissionHost + 'api/');
 
   role
     .listView()

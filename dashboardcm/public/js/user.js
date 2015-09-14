@@ -1,6 +1,6 @@
-function userConfig(nga, admin) {
+function userConfig(nga, admin, config) {
   var user = admin.getEntity('users');
-  user.baseApiUrl('http://localhost:3002/api/');
+  user.baseApiUrl(config.authHost + 'api/');
   user
     .listView()
     .fields([
