@@ -8,48 +8,54 @@ var factory = require('../lib/create-resource-controller');
 
 var controller = factory('user');
 
-function login(credentials, appId) {
+function login(req, res, next) {
 
-  return Promise.all([
-    collections(appId).get('user'),
-    appCollection.get()
-  ]).spread(function(User, Application) {
+  var credentials = req.swagger.params.credentials.value;
+  var appId = req.cm.appId;
 
-    return Promise.all([
-      User.login(credentials),
-      Application.findOrCreate({id: appId})
-    ]);
+  return Promise
+    .all([
+      collections(appId).get('user'),
+      appCollection.get()
+    ])
+    .spread(function(User, Application) {
+      return Promise.all([
+        User.login(credentials),
+        Application.findOrCreate({id: appId})
+      ]);
+    })
+    .spread(function(user, application) {
+      var token = jwt.sign({}, application.secret, {
+        noTimestamp: true,
+        subject: user.id,
+        issuer: config.id,
+        audience: appId
+      });
 
-  }).spread(function(user, application) {
-
-    var token = jwt.sign({}, application.secret, {
-      noTimestamp: true,
-      subject: user.id,
-      issuer: config.id,
-      audience: appId
-    });
-
-    return {
-      userId: user.id,
-      token: token
-    };
-
-  });
-
+      return res.json({
+        userId: user.id,
+        token: token
+      });
+    })
+    .catch(next);
 }
 
-function signup(credentials, appId) {
-  console.log(arguments);
+function signup(req, res, next) {
+
+  var credentials = req.swagger.params.credentials.value;
+  var appId = req.cm.appId;
+
   return collections(appId)
     .get('user')
     .then(function(User) {
       return User.signup(credentials);
     })
     .then(function(user) {
-      return {
+      return res.json({
         userId: user.id
-      };
-    });
+      });
+    })
+    .catch(next);
 }
 
 controller.login = login;

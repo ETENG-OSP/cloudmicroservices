@@ -1,16 +1,19 @@
 var http = require('http');
 var Promise = require('bluebird');
-var authServer = http.createServer(require('./lib/app'));
+var appFactory = require('./lib/app');
+
 
 function start() {
-  return Promise.all([
-    authServerStart()
-  ]);
+  return appFactory()
+    .then(function(app) {
+      return serverStart(app);
+    });
 }
 
-function authServerStart() {
+function serverStart(app) {
   return new Promise(function(resolve, reject) {
-    authServer.listen(3002, function() {
+    var server = http.createServer(app);
+    server.listen(3002, function() {
       console.log('> auth server started at 3002');
       resolve();
     });

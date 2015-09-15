@@ -8,6 +8,10 @@ module.exports = {
 
     name: 'string',
 
+    url: 'string',
+
+    meta: 'json',
+
     code: {
       type: 'string',
       unique: true

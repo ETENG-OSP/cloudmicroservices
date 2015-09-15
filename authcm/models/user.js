@@ -54,12 +54,9 @@ var Administrator = {
       .findOne({username: credentials.username})
       .then(function(entity) {
         if (!entity) {
-          throw new Error('该用户不存在');
+          throw new Error('用户不存在');
         }
         return entity.comparePassword(credentials.password);
-      })
-      .then(function(entity) {
-        return entity.toJSON();
       });
   },
 
@@ -69,8 +66,8 @@ var Administrator = {
         username: credentials.username,
         password: credentials.password
       })
-      .then(function(entity) {
-        return entity.toJSON();
+      .catch(function(err) {
+        throw new Error('用户已注册');
       });
   }
 

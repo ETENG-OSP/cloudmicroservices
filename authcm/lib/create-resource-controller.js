@@ -11,7 +11,11 @@ function createResourceController(resourceName, populates) {
     destroy: destroy
   };
 
-  function find(args, appId) {
+  function find(req, res, next) {
+
+    var args;
+    var appId = req.cm.appId;
+
     return collections(appId)
       .get(resourceName)
       .then(function(Model) {
@@ -22,45 +26,82 @@ function createResourceController(resourceName, populates) {
           });
         }
         return query;
-      });
+      })
+      .then(function(entities) {
+        return res.json(entities);
+      })
+      .catch(next);
   }
 
-  function findOne(args, appId) {
+  function findOne(req, res, next) {
+
+    var id = req.swagger.params.id.value;
+    var appId = req.cm.appId;
+
     return collections(appId)
       .get(resourceName)
       .then(function(Model) {
-        var query = Model.findOne(args);
+        var query = Model.findOne(id);
         if (Array.isArray(populates)) {
           populates.forEach(function(populate) {
             query.populate(populate);
           });
         }
         return query;
-      });
+      })
+      .then(function(entity) {
+        return res.json(entity);
+      })
+      .catch(next);
   }
 
-  function create(args, appId) {
+  function create(req, res, next) {
+
+    var data = req.swagger.params.data.value;
+    var appId = req.cm.appId;
+
     return collections(appId)
       .get(resourceName)
       .then(function(Model) {
-        return Model.create(args);
-      });
+        return Model.create(data);
+      })
+      .then(function(entity) {
+        return res.json(entity);
+      })
+      .catch(next);
   }
 
-  function update(id, args, appId) {
+  function update(req, res, next) {
+
+    var id = req.swagger.params.id.value;
+    var data = req.swagger.params.data.value;
+    var appId = req.cm.appId;
+
     return collections(appId)
       .get(resourceName)
       .then(function(Model) {
-        return Model.update(id, args);
-      });
+        return Model.update(id, data);
+      })
+      .then(function(entity) {
+        return res.json(entity);
+      })
+      .catch(next);
   }
 
-  function destroy(args, appId) {
+  function destroy(req, res, next) {
+
+    var id = req.swagger.params.id.value;
+    var appId = req.cm.appId;
+
     return collections(appId)
       .get(resourceName)
       .then(function(Model) {
-        return Model.destroy(args);
-      });
+        return Model.destroy(id);
+      })
+      .then(function(entity) {
+        return res.json(entity);
+      })
+      .catch(next);
   }
 }
 
