@@ -6,7 +6,7 @@
     "version": "1.0"
   },
   "produces": ["application/json"],
-  "basePath": "/auth",
+  "basePath": "/",
   "security": [
     {
       "cmjwt": []
@@ -31,7 +31,7 @@
     }
   },
   "paths": {
-    "/login": {
+    "/auth/login": {
       "post": {
         "x-swagger-router-controller": "user",
         "operationId": "login",
@@ -55,7 +55,7 @@
         }
       }
     },
-    "/signup": {
+    "/auth/signup": {
       "post": {
         "x-swagger-router-controller": "user",
         "operationId": "signup",
@@ -79,7 +79,7 @@
         }
       }
     },
-    "/users": {
+    "/api/users": {
       "get": {
         "x-swagger-router-controller": "user",
         "operationId": "find",
@@ -130,7 +130,7 @@
         }
       }
     },
-    "/users/{id}": {
+    "/api/users/{id}": {
       "get": {
         "x-swagger-router-controller": "user",
         "operationId": "findOne",
