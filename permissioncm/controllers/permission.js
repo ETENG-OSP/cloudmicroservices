@@ -1,5 +1,5 @@
-var factory = require('../lib/create-resource-controller');
+var resourceController = require('../lib/resource-controller');
 
-var controller = factory('permission', ['roles']);
+var controller = resourceController('permission', ['roles']);
 
 module.exports = controller;

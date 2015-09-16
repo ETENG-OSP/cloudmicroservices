@@ -1,7 +1,7 @@
 var _ = require('underscore');
 var collections = require('./collections');
 
-function createResourceController(resourceName, populates) {
+function resourceController(resourceName, populates) {
 
   return {
     find: find,
@@ -105,4 +105,4 @@ function createResourceController(resourceName, populates) {
   }
 }
 
-module.exports = createResourceController;
+module.exports = resourceController;

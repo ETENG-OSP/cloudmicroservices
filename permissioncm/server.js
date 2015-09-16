@@ -1,15 +1,17 @@
 var http = require('http');
 var Promise = require('bluebird');
-var server = http.createServer(require('./lib/app'));
+var appFactory = require('./lib/app');
 
 function start() {
-  return Promise.all([
-    serverStart()
-  ]);
+  return appFactory()
+    .then(function(app) {
+      return serverStart(app);
+    });
 }
 
-function serverStart() {
+function serverStart(app) {
   return new Promise(function(resolve, reject) {
+    var server = http.createServer(app);
     server.listen(3001, function() {
       console.log('> permission server started at 3001');
       resolve();

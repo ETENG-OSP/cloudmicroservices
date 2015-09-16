@@ -4,9 +4,9 @@ var Promise = require('bluebird');
 var config = require('../lib/config');
 var appCollection = require('../lib/application');
 var collections = require('../lib/collections');
-var factory = require('../lib/create-resource-controller');
+var resourceController = require('../lib/resource-controller');
 
-var controller = factory('user');
+var controller = resourceController('user');
 
 function login(req, res, next) {
 

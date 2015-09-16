@@ -11,11 +11,13 @@
     "body-parser": "^1.13.3",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "json-refs": "^1.0.5",
     "jsonwebtoken": "^5.0.5",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
     "request": "^2.61.0",
     "sails-disk": "^0.10.8",
+    "swagger-tools": "^0.9.5",
     "underscore": "^1.8.3",
     "uuid": "^2.0.1",
     "waterline": "^0.10.26"

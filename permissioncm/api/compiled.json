@@ -1,0 +1,100 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "用户权限 API",
+    "description": "用于建立用户-角色-权限的关系",
+    "version": "1.0"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "basePath": "/",
+  "security": [
+    {
+      "cmjwt": []
+    }
+  ],
+  "paths": {
+    "/api/permissions": {
+      "get": {
+        "x-swagger-router-controller": "permission",
+        "operationId": "find",
+        "tags": [
+          "权限资源",
+          "查询操作",
+          "集合方法"
+        ],
+        "parameters": [
+          {
+            "name": "cm-api-key",
+            "description": "平台发行的 API_KEY",
+            "in": "header",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功"
+          }
+        }
+      },
+      "post": {
+        "x-swagger-router-controller": "permission",
+        "operationId": "create",
+        "tags": [
+          "权限资源",
+          "新增操作",
+          "集合方法"
+        ],
+        "parameters": [
+          {
+            "name": "cm-api-key",
+            "description": "平台发行的 API_KEY",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "权限信息",
+            "schema": {
+              "$ref": "#/definitions/Permission"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "res"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Permission": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "cmjwt": {
+      "type": "apiKey",
+      "name": "cm-api-key",
+      "in": "header"
+    }
+  }
+}

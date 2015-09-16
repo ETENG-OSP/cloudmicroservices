@@ -1,0 +1,45 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "用户权限 API",
+    "description": "用于建立用户-角色-权限的关系",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "basePath": "/",
+  "security": [
+    {
+      "cmjwt": []
+    }
+  ],
+  "paths": {
+    "/api/permissions": {
+      "$ref": "operations/permission.json#/collection"
+    },
+    "/api/permissions/{id}": {
+      "$ref": "operations/permission.json#/model"
+    },
+    "/api/roles": {
+      "$ref": "operations/role.json#/collection"
+    },
+    "/api/roles/{id}": {
+      "$ref": "operations/role.json#/model"
+    },
+    "/api/platforms": {
+      "$ref": "operations/platform.json#/collection"
+    },
+    "/api/platforms/{id}": {
+      "$ref": "operations/platform.json#/model"
+    }
+  },
+  "definitions": {
+    "$ref": "definitions.json"
+  },
+  "securityDefinitions": {
+    "cmjwt": {
+      "type": "apiKey",
+      "name": "cm-api-key",
+      "in": "header"
+    }
+  }
+}
