@@ -30,6 +30,12 @@
     },
     "/api/platforms/{id}": {
       "$ref": "operations/platform.json#/model"
+    },
+    "/api/users": {
+      "$ref": "operations/user.json#/collection"
+    },
+    "/api/users/{id}": {
+      "$ref": "operations/user.json#/model"
     }
   },
   "definitions": {

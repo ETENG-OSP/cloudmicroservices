@@ -15,7 +15,7 @@ function myInterceptor($injector, $q, config) {
       }
 
       config.url = config.url.replace(host, alternateHost);
-      config.headers.Authorization = 'Bearer ' + alternateToken;
+      config.headers['cm-api-key'] = alternateToken;
       console.log('after:', config);
 
       return $http(config).then(function() {
@@ -31,7 +31,7 @@ function myInterceptor($injector, $q, config) {
       }
 
       config.url = config.url.replace(host, alternateHost);
-      config.headers.Authorization = 'Bearer ' + alternateToken;
+      config.headers['cm-api-key'] = alternateToken;
 
       return $http(config).then(function(newResponse) {
         if (Array.isArray(response.data)) {

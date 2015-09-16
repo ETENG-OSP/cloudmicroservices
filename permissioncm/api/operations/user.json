@@ -1,30 +1,25 @@
 {
-
-  "components": {
-    "controller": "user"
-  },
-
   "parameters": {
+
     "data": {
       "name": "data",
       "in": "body",
-      "description": "用户信息",
+      "description": "权限信息",
       "schema": {
-        "<%= '$ref' %>": "<%= '#/definitions/User' %>"
+        "<%= '$ref' %>": "<%= '#/definitions/Role' %>"
       }
     }
+
   },
 
   "collection": {
 
     "get": {
 
-      "x-swagger-router-controller": {
-        "$ref": "#/components/controller"
-      },
+      "x-swagger-router-controller": "role",
       "operationId": "find",
 
-      "tags": ["角色资源", "查询操作", "集合方法"],
+      "tags": ["用户资源", "查询操作", "集合方法"],
 
       "parameters": [
         {"$ref": "../parameters.json#/apikey"}
@@ -39,12 +34,10 @@
 
     "post": {
 
-      "x-swagger-router-controller": {
-        "$ref": "#/components/controller"
-      },
+      "x-swagger-router-controller": "role",
       "operationId": "create",
 
-      "tags": ["角色资源", "新增操作", "集合方法"],
+      "tags": ["用户资源", "新增操作", "集合方法"],
 
       "parameters": [
         {"$ref": "../parameters.json#/apikey"},
@@ -63,12 +56,10 @@
 
     "get": {
 
-      "x-swagger-router-controller": {
-        "$ref": "#/components/controller"
-      },
+      "x-swagger-router-controller": "role",
       "operationId": "findOne",
 
-      "tags": ["角色资源", "查询操作", "模型方法"],
+      "tags": ["用户资源", "查询操作", "模型方法"],
 
       "parameters": [
         {"$ref": "../parameters.json#/apikey"},
@@ -85,12 +76,10 @@
 
     "put": {
 
-      "x-swagger-router-controller": {
-        "$ref": "#/components/controller"
-      },
+      "x-swagger-router-controller": "role",
       "operationId": "update",
 
-      "tags": ["角色资源", "更新操作", "模型方法"],
+      "tags": ["用户资源", "更新操作", "模型方法"],
 
       "parameters": [
         {"$ref": "../parameters.json#/apikey"},
@@ -108,12 +97,10 @@
 
     "delete": {
 
-      "x-swagger-router-controller": {
-        "$ref": "#/components/controller"
-      },
+      "x-swagger-router-controller": "role",
       "operationId": "destroy",
 
-      "tags": ["角色资源", "删除操作", "模型方法"],
+      "tags": ["用户资源", "删除操作", "模型方法"],
 
       "parameters": [
         {"$ref": "../parameters.json#/apikey"},

@@ -20,5 +20,13 @@
       "id": {"type": "string"},
       "name": {"type": "string"}
     }
+  },
+
+  "User": {
+    "properties": {
+      "id": {"type": "string"},
+      "username": {"type": "string"}
+    }
   }
+
 }
