@@ -7,7 +7,7 @@ module.exports = {
   /* @endif */
 
   /* @ifndef DEV */
-  secret: 'MmUwZWUzOWQtZTFkMi00ZjhjLWE0NzEtZTFiZGU1M2NkYTg2'
+  secret: 'MDgxZGRhZGYtNzA3OS00ZGZjLWJkZGItYjcxMTc1YWJmMDAx'
   /* @endif */
 
 };

@@ -1,7 +1,7 @@
 var pp = require('preprocess');
 
 var context = {
-  DEV: true,
+  //DEV: true,
 };
 
 pp.preprocessFileSync(
