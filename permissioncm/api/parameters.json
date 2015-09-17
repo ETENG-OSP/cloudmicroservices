@@ -4,8 +4,8 @@
     "name": "id",
     "description": "实体 ID",
     "in": "path",
-    "type": "string",
-    "required": true
+    "required": true,
+    "type": "string"
   },
 
   "api-key": {

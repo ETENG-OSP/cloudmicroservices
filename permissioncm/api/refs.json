@@ -16,7 +16,9 @@
 
     "Platform": {"<%= '$ref' %>": "#/definitions/Platform"},
 
-    "Permission": {"<%= '$ref' %>": "#/definitions/Permission"}
+    "Permission": {"<%= '$ref' %>": "#/definitions/Permission"},
+
+    "id": {"<%= '$ref' %>": "#/definitions/id"}
 
   }
 

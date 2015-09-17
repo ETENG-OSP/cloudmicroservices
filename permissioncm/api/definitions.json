@@ -11,7 +11,19 @@
   "Role": {
     "properties": {
       "id": {"type": "string"},
-      "name": {"type": "string"}
+      "name": {"type": "string"},
+      "permissions": {
+        "type": "array",
+        "items": {
+          "$ref": "refs.json#/definitions/id"
+        }
+      },
+      "users": {
+        "type": "array",
+        "items": {
+          "$ref": "refs.json#/definitions/id"
+        }
+      }
     }
   },
 
@@ -27,6 +39,11 @@
       "id": {"type": "string"},
       "username": {"type": "string"}
     }
+  },
+
+  "id": {
+    "type": "string",
+    "default": "id"
   }
 
 }

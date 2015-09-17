@@ -1,4 +1,5 @@
 var bcrypt = require('bcrypt');
+var uuid = require('uuid');
 
 var Administrator = {
 
@@ -7,6 +8,15 @@ var Administrator = {
   schema: true,
 
   attributes: {
+
+    id: {
+      type: 'string',
+      primaryKey: true,
+      unique: true,
+      defaultsTo: function() {
+        return uuid.v4();
+      }
+    },
 
     username: {
       type: 'string',
