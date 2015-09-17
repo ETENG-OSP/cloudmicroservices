@@ -4,12 +4,10 @@ function permissionConfig(nga, admin, config) {
   permission
     .listView()
     .fields([
+
       nga.field('id'),
-
       nga.field('name'),
-
       nga.field('code'),
-
       nga.field('url'),
 
       nga.field('parent', 'reference')
@@ -29,8 +27,7 @@ function permissionConfig(nga, admin, config) {
   permission
     .creationView()
     .fields([
-      nga.field('name'),
-      nga.field('code')
+      nga.field('name')
     ]);
 
   permission
@@ -38,10 +35,9 @@ function permissionConfig(nga, admin, config) {
     .fields([
 
       nga.field('name'),
-
+      nga.field('code'),
       nga.field('url'),
-
-      nga.field('meta'),
+      nga.field('meta', 'json'),
 
       nga.field('parent', 'reference')
         .targetEntity(admin.getEntity('permissions'))

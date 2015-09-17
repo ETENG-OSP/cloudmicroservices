@@ -1,11 +1,10 @@
 {
   "Permission": {
-    "properties": {
-      "id": {"type": "string"},
-      "name": {"type": "string"},
-      "url": {"type": "string"},
-      "meta": {"type": "string"}
-    }
+    "$ref": "definitions/permission.json#/query"
+  },
+
+  "PermissionPopulated": {
+    "$ref": "definitions/permission.json#/data"
   },
 
   "Role": {
@@ -30,6 +29,7 @@
   "Platform": {
     "properties": {
       "id": {"type": "string"},
+      "code": {"type": "string"},
       "name": {"type": "string"}
     }
   },
@@ -44,6 +44,14 @@
   "id": {
     "type": "string",
     "default": "id"
+  },
+
+  "Error": {
+    "properties": {
+      "code": {"type": "integer"},
+      "message": {"type": "string"},
+      "detail": {"type": "object"}
+    }
   }
 
 }

@@ -30,7 +30,9 @@ function resourceController(resourceName, populates) {
       .then(function(entities) {
         return res.json(entities);
       })
-      .catch(next);
+      .catch(function(err) {
+        return res.status(500).json(err);
+      });
   }
 
   function findOne(req, res, next) {
@@ -52,7 +54,9 @@ function resourceController(resourceName, populates) {
       .then(function(entity) {
         return res.json(entity);
       })
-      .catch(next);
+      .catch(function(err) {
+        return res.status(500).json(err);
+      });
   }
 
   function create(req, res, next) {
@@ -68,7 +72,9 @@ function resourceController(resourceName, populates) {
       .then(function(entity) {
         return res.json(entity);
       })
-      .catch(next);
+      .catch(function(err) {
+        return res.status(500).json(err);
+      });
   }
 
   function update(req, res, next) {
@@ -85,7 +91,9 @@ function resourceController(resourceName, populates) {
       .then(function(entity) {
         return res.json(entity);
       })
-      .catch(next);
+      .catch(function(err) {
+        return res.status(500).json(err);
+      });
   }
 
   function destroy(req, res, next) {
@@ -101,7 +109,9 @@ function resourceController(resourceName, populates) {
       .then(function(entity) {
         return res.json(entity);
       })
-      .catch(next);
+      .catch(function(err) {
+        return res.status(500).json(err);
+      });
   }
 }
 

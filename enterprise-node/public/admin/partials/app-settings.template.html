@@ -20,5 +20,10 @@
   </ul>
 </div>
 
+<!-- @ifdef DEV -->
 <a href="//localhost:3004">商店</a>
+<!-- @endif -->
 
+<!-- @ifndef DEV -->
+<a href="//192.168.0.35:3004">商店</a>
+<!-- @endif -->

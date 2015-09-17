@@ -16,6 +16,10 @@ var routerOptions = {
   controllers: __dirname + '/../controllers'
 };
 
+var validatorOptions = {
+  validateResponse: false
+};
+
 function factory() {
   var app = express();
   app.use(cors());
@@ -32,7 +36,7 @@ function factory() {
       var swaggerString = JSON.stringify(swaggerObject);
       var template = _.template(swaggerString);
       var compiled = JSON.parse(template());
-      console.log(JSON.stringify(compiled, null, 2));
+      // console.log(JSON.stringify(compiled, null, 2));
 
       swaggerTools.initializeMiddleware(compiled, function(middleware) {
         deferred.resolve(middleware);
@@ -42,7 +46,7 @@ function factory() {
     .then(function(middleware) {
       app.use(middleware.swaggerMetadata());
       app.use(middleware.swaggerSecurity(securityOptions));
-      app.use(middleware.swaggerValidator());
+      app.use(middleware.swaggerValidator(validatorOptions));
       app.use(middleware.swaggerRouter(routerOptions));
       app.use(middleware.swaggerUi());
       return app;

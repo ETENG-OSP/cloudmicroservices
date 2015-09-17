@@ -32,7 +32,13 @@
 
       "responses": {
         "200": {
-          "description": "成功"
+          "description": "成功",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "../refs.json#/definitions/PermissionPopulated"
+            }
+          }
         }
       }
 
