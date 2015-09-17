@@ -1,4 +1,8 @@
 {
+  "components": {
+    "controller": "permission"
+  },
+
   "parameters": {
 
     "data": {
@@ -6,7 +10,7 @@
       "in": "body",
       "description": "权限信息",
       "schema": {
-        "<%= '$ref' %>": "<%= '#/definitions/Permission' %>"
+        "$ref": "../refs.json#/definitions/Permission"
       }
     }
 
@@ -22,7 +26,7 @@
       "tags": ["权限资源", "查询操作", "集合方法"],
 
       "parameters": [
-        {"$ref": "../parameters.json#/apikey"}
+        {"$ref": "../refs.json#/parameters/api-key"}
       ],
 
       "responses": {
@@ -40,7 +44,7 @@
       "tags": ["权限资源", "新增操作", "集合方法"],
 
       "parameters": [
-        {"$ref": "../parameters.json#/apikey"},
+        {"$ref": "../refs.json#/parameters/api-key"},
         {"$ref": "#/parameters/data"}
       ],
       "responses": {
@@ -62,8 +66,8 @@
       "tags": ["权限资源", "查询操作", "模型方法"],
 
       "parameters": [
-        {"$ref": "../parameters.json#/apikey"},
-        {"$ref": "../parameters.json#/id"}
+        {"$ref": "../refs.json#/parameters/api-key"},
+        {"$ref": "../refs.json#/parameters/id"}
       ],
 
       "responses": {
@@ -82,8 +86,8 @@
       "tags": ["权限资源", "更新操作", "模型方法"],
 
       "parameters": [
-        {"$ref": "../parameters.json#/apikey"},
-        {"$ref": "../parameters.json#/id"},
+        {"$ref": "../refs.json#/parameters/api-key"},
+        {"$ref": "../refs.json#/parameters/id"},
         {"$ref": "#/parameters/data"}
       ],
 
@@ -103,8 +107,8 @@
       "tags": ["权限资源", "删除操作", "模型方法"],
 
       "parameters": [
-        {"$ref": "../parameters.json#/apikey"},
-        {"$ref": "../parameters.json#/id"}
+        {"$ref": "../refs.json#/parameters/api-key"},
+        {"$ref": "../refs.json#/parameters/id"}
       ],
 
       "responses": {

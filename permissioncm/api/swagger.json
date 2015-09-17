@@ -13,6 +13,9 @@
     }
   ],
   "paths": {
+    "/api/users/{id}/permissions": {
+      "$ref": "operations/user.json#/action"
+    },
     "/api/permissions": {
       "$ref": "operations/permission.json#/collection"
     },
@@ -40,6 +43,9 @@
   },
   "definitions": {
     "$ref": "definitions.json"
+  },
+  "parameters": {
+    "$ref": "parameters.json"
   },
   "securityDefinitions": {
     "cmjwt": {

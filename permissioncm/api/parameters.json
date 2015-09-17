@@ -8,7 +8,7 @@
     "required": true
   },
 
-  "apikey": {
+  "api-key": {
     "name": "cm-api-key",
     "description": "平台发行的 API_KEY",
     "in": "header",

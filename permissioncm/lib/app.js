@@ -32,6 +32,7 @@ function factory() {
       var swaggerString = JSON.stringify(swaggerObject);
       var template = _.template(swaggerString);
       var compiled = JSON.parse(template());
+      console.log(JSON.stringify(compiled, null, 2));
 
       swaggerTools.initializeMiddleware(compiled, function(middleware) {
         deferred.resolve(middleware);
