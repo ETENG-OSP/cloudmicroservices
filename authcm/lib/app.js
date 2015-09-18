@@ -1,49 +1,51 @@
 var express = require('express');
 var swaggerTools = require('swagger-tools');
 var cors = require('cors');
+var jsonRefs = require('json-refs');
+var _ = require('underscore');
 var Promise = require('bluebird');
 
-var cmSwagger = require('../cmlib/cm-swagger');
-var cmSwaggerSecurity = require('../cmlib/cm-swagger-security');
+var cmSwaggerSecurity = require('./cm-swagger-security');
 
 function factory(opts) {
-  return new Promise(function(resolve, reject) {
-    opts = opts || require('./swagger');
+  var app = express();
+  app.use(cors());
+  // app.use(cors());
+  // app.use(morgan('dev'));
+  // app.use(express.static(__dirname + '/../public'));
 
-    var securityOptions = cmSwaggerSecurity({
-      cm: cmSwagger(require('./config'))
-    });
+  var securityOptions = cmSwaggerSecurity(opts);
+  var routerOptions = {controllers: __dirname + '/../controllers'};
+  var validatorOptions = {validateResponse: false};
 
-    var routerOptions = {
-      controllers: __dirname + '/../controllers'
-    };
+  return jsonRefs
+    .resolveRefs(require('../api/swagger'), {
+      location: __dirname + '/../api'
+    })
+    .then(function(results) {
+      // console.log(JSON.stringify(results, null, 2));
+      var deferred = Promise.defer();
+      var swaggerObject = results.resolved;
 
-    var app = express();
-    app.use(cors());
+      var swaggerString = JSON.stringify(swaggerObject);
+      var template = _.template(swaggerString);
+      var compiled = JSON.parse(template());
+      // console.log(JSON.stringify(compiled, null, 2));
 
-    swaggerTools.initializeMiddleware(opts, function(middleware) {
+      swaggerTools.initializeMiddleware(compiled, function(middleware) {
+        deferred.resolve(middleware);
+      });
+
+      return deferred.promise;
+    })
+    .then(function(middleware) {
       app.use(middleware.swaggerMetadata());
       app.use(middleware.swaggerSecurity(securityOptions));
-      app.use(middleware.swaggerValidator());
+      app.use(middleware.swaggerValidator(validatorOptions));
       app.use(middleware.swaggerRouter(routerOptions));
       app.use(middleware.swaggerUi());
-      resolve(app);
+      return app;
     });
-
-  });
 }
 
 module.exports = factory;
-
-// var morgan = require('morgan');
-
-// app.use(morgan('dev'));
-// app.use(express.static(__dirname + '/../public'));
-// var cm = cmlib();
-//
-// app.use(cm.verify);
-// app.use(cm.issuerCheck);
-// app.use(cm.audienceCheck);
-//
-// app.use(require('../routers/auth'));
-// app.use(require('../routers/api'));

@@ -5,21 +5,18 @@ var jsonRefs = require('json-refs');
 var _ = require('underscore');
 var Promise = require('bluebird');
 
-var cmSwaggerSecurity = require('../cmlib/cm-swagger-security');
+var cmSwaggerSecurity = require('./cm-swagger-security');
 
-var securityOptions = cmSwaggerSecurity(require('./config'));
-
-var routerOptions = {
-  controllers: __dirname + '/../controllers'
-};
-
-var validatorOptions = {
-  validateResponse: false
-};
-
-function factory() {
+function factory(opts) {
   var app = express();
   app.use(cors());
+  // app.use(cors());
+  // app.use(morgan('dev'));
+  // app.use(express.static(__dirname + '/../public'));
+
+  var securityOptions = cmSwaggerSecurity(opts);
+  var routerOptions = {controllers: __dirname + '/../controllers'};
+  var validatorOptions = {validateResponse: false};
 
   return jsonRefs
     .resolveRefs(require('../api/swagger'), {
@@ -52,27 +49,3 @@ function factory() {
 }
 
 module.exports = factory;
-
-// var express = require('express');
-// var bodyParser = require('body-parser');
-// var morgan = require('morgan');
-// var cors = require('cors');
-// var cmlib = require('../cmlib');
-//
-// var cm = cmlib(require('./config'));
-// var app = express();
-//
-// app.use(cors());
-// app.use(morgan('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
-//
-// app.use(express.static(__dirname + '/../public'));
-//
-// app.use(cm.verify);
-// app.use(cm.issuerCheck);
-// app.use(cm.audienceCheck);
-//
-// app.use(require('../routers/api'));
-//
-// module.exports = app;

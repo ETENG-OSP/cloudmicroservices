@@ -1,17 +1,17 @@
 var pp = require('preprocess');
 
 var context = {
-  //DEV: true,
+  DEV: true,
 };
 
 pp.preprocessFileSync(
-  'authcm/lib/config.template.js',
-  'authcm/lib/config.js',
+  'authcm/config.template.js',
+  'authcm/config.js',
   context
 );
 pp.preprocessFileSync(
-  'permissioncm/lib/config.template.js',
-  'permissioncm/lib/config.js',
+  'permissioncm/config.template.js',
+  'permissioncm/config.js',
   context
 );
 

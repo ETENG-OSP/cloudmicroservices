@@ -1,9 +1,10 @@
 var http = require('http');
 var Promise = require('bluebird');
 var appFactory = require('./lib/app');
+var config = require('./config');
 
 function start() {
-  return appFactory()
+  return appFactory(config)
     .then(function(app) {
       return serverStart(app);
     });

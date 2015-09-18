@@ -2,10 +2,11 @@ var Waterline = require('waterline');
 var Promise = require('bluebird');
 var _ = require('underscore');
 
+var storeName = require('../config').storeName;
 var connections = {};
 
 function getCollectionsForApplication(appId) {
-  var connectionName = 'permissionstore-' + appId;
+  var connectionName = storeName + 'store-' + appId;
   if (!connections[connectionName]) {
     connections[connectionName] = createConnection(connectionName);
   }

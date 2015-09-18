@@ -1,10 +1,9 @@
 var jwt = require('jsonwebtoken');
 var Promise = require('bluebird');
 
-var verify = Promise.promisify(jwt.verify, jwt);
+var verify = Promise.promisify(jwt.verify);
 
 function factory(opts) {
-
   return {
     cmApiKey: cmApiKey
   };
@@ -20,7 +19,6 @@ function factory(opts) {
       })
       .catch(callback);
   }
-
 }
 
 module.exports = factory;

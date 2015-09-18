@@ -2,38 +2,21 @@
 
   "User": {
     "properties": {
-      "id": {
-        "type": "string"
-      },
-      "username": {
-        "type": "string"
-      },
-      "password": {
-        "type": "string"
-      }
+      "id": {"type": "string"},
+      "username": {"type": "string"}
     }
   },
 
-  "credentials": {
-    "properties": {
-      "username": {
-        "type": "string"
-      },
-      "password": {
-        "type": "string",
-        "format": "password"
-      }
-    }
+  "id": {
+    "type": "string",
+    "default": "id"
   },
 
-  "Success": {
+  "Error": {
     "properties": {
-      "userId": {
-        "type": "string"
-      },
-      "token": {
-        "type": "string"
-      }
+      "code": {"type": "integer"},
+      "message": {"type": "string"},
+      "detail": {"type": "object"}
     }
   }
 

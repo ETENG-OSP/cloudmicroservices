@@ -1,80 +1,24 @@
 {
-
-  "components": {
-    "controller": "user"
-  },
-
-  "collection": {
-
-    "get": {
-      "x-swagger-router-controller": {"$ref": "#/components/controller"},
-      "operationId": "find",
-      "description": "获得全部用户",
-      "tags": ["resource"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"}
-      ],
-      "responses": {
-        "200": {"$ref": "../refs.json#/responses/Success"}
-      }
-    },
-
-    "post": {
-      "x-swagger-router-controller": {"$ref": "#/components/controller"},
-      "operationId": "create",
-      "description": "新增用户",
-      "tags": ["resource"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"},
-        {"$ref": "../refs.json#/parameters/credentials"}
-      ],
-      "responses": {
-        "200": {"$ref": "../refs.json#/responses/Success"}
-      }
+  "name": "user",
+  "controller": "user",
+  "data": {
+    "name": "data",
+    "in": "body",
+    "description": "实体数据",
+    "schema": {
+      "$ref": "../refs.json#/definitions/User"
     }
-
   },
 
-  "model": {
+  "resource": {
+    "$ref": "../base/resource.json"
+  },
 
+  "usable": {
     "get": {
-      "x-swagger-router-controller": {"$ref": "#/components/controller"},
-      "operationId": "findOne",
-      "description": "获取用户详细信息",
-      "tags": ["resource"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"},
-        {"$ref": "../refs.json#/parameters/id"}
-      ],
-      "responses": {
-        "200": {"$ref": "../refs.json#/responses/Success"}
-      }
-    },
-
-    "put": {
-      "x-swagger-router-controller": {"$ref": "#/components/controller"},
-      "operationId": "update",
-      "description": "更新用户信息",
-      "tags": ["resource"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"},
-        {"$ref": "../refs.json#/parameters/id"},
-        {"$ref": "../refs.json#/parameters/user"}
-      ],
-      "responses": {
-        "200": {"$ref": "../refs.json#/responses/Success"}
-      }
-    },
-
-    "delete": {
-      "x-swagger-router-controller": {"$ref": "#/components/controller"},
-      "operationId": "destroy",
-      "description": "删除用户",
-      "tags": ["resource"],
+      "x-swagger-router-controller": {"$ref": "#/controller"},
+      "operationId": "usable",
+      "tags": ["frontent"],
 
       "parameters": [
         {"$ref": "../refs.json#/parameters/api-key"},
@@ -84,6 +28,5 @@
         "200": {"$ref": "../refs.json#/responses/Success"}
       }
     }
-
   }
 }

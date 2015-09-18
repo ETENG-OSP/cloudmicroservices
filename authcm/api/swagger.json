@@ -1,40 +1,19 @@
 {
   "swagger": "2.0",
-  "info": {
-    "title": "身份验证 API",
-    "description": "用于用户登录与注册",
-    "version": "1.0"
-  },
+  "info": {"$ref": "info.json"},
 
-  "security": [{"cmjwt": []}],
   "produces": ["application/json"],
   "consumes": ["application/json"],
   "basePath": "/",
+  "security": [{"cmApiKey": []}],
 
-  "paths": {
-    "/auth/refresh": {
-      "$ref": "operations/auth.json#/refresh"
-    },
-    "/auth/login": {
-      "$ref": "operations/auth.json#/login"
-    },
-    "/auth/signup": {
-      "$ref": "operations/auth.json#/signup"
-    },
-    "/api/users": {
-      "$ref": "operations/user.json#/collection"
-    },
-    "/api/users/{id}": {
-      "$ref": "operations/user.json#/model"
-    }
-  },
-
-  "parameters": {"$ref": "parameters.json"},
+  "paths": {"$ref": "paths.json"},
   "definitions": {"$ref": "definitions.json"},
+  "parameters": {"$ref": "parameters.json"},
   "responses": {"$ref": "responses.json"},
 
   "securityDefinitions": {
-    "cmjwt": {
+    "cmApiKey": {
       "type": "apiKey",
       "name": "cm-api-key",
       "in": "header"
