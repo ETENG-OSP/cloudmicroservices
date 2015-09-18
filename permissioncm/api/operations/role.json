@@ -10,7 +10,7 @@
     }
   },
 
-  "operations": {
-    "$ref": "../base/resource-operation.json"
+  "resource": {
+    "$ref": "../base/resource.json"
   }
 }

@@ -10,7 +10,23 @@
     }
   },
 
-  "operations": {
-    "$ref": "../base/resource-operation.json"
+  "resource": {
+    "$ref": "../base/resource.json"
+  },
+
+  "usable": {
+    "get": {
+      "x-swagger-router-controller": {"$ref": "#/controller"},
+      "operationId": "usable",
+      "tags": ["frontent"],
+
+      "parameters": [
+        {"$ref": "../refs.json#/parameters/api-key"},
+        {"$ref": "../refs.json#/parameters/id"}
+      ],
+      "responses": {
+        "200": {"$ref": "../refs.json#/responses/Success"}
+      }
+    }
   }
 }
