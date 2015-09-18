@@ -9,5 +9,4 @@ module.exports = {
   /* @ifndef DEV */
   secret: 'MDgxZGRhZGYtNzA3OS00ZGZjLWJkZGItYjcxMTc1YWJmMDAx'
   /* @endif */
-
 };

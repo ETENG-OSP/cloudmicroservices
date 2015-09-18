@@ -1,129 +1,16 @@
 {
-  "components": {
-    "controller": "permission"
+  "name": "permission",
+  "controller": "permission",
+  "data": {
+    "name": "data",
+    "in": "body",
+    "description": "实体数据",
+    "schema": {
+      "$ref": "../refs.json#/definitions/Permission"
+    }
   },
 
-  "parameters": {
-
-    "data": {
-      "name": "data",
-      "in": "body",
-      "description": "权限信息",
-      "schema": {
-        "$ref": "../refs.json#/definitions/Permission"
-      }
-    }
-
-  },
-
-  "collection": {
-
-    "get": {
-
-      "x-swagger-router-controller": "permission",
-      "operationId": "find",
-
-      "tags": ["权限资源", "查询操作", "集合方法"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"}
-      ],
-
-      "responses": {
-        "200": {
-          "description": "成功"
-        }
-      }
-    },
-
-    "post": {
-
-      "x-swagger-router-controller": "permission",
-      "operationId": "create",
-
-      "tags": ["权限资源", "新增操作", "集合方法"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"},
-        {"$ref": "#/parameters/data"}
-      ],
-      "responses": {
-        "200": {
-          "description": "成功"
-        },
-        "default": {
-          "description": "失败",
-          "schema": {
-            "$ref": "../refs.json#/definitions/Error"
-          }
-        }
-      }
-    }
-
-  },
-
-  "model": {
-
-    "get": {
-
-      "x-swagger-router-controller": "permission",
-      "operationId": "findOne",
-
-      "tags": ["权限资源", "查询操作", "模型方法"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"},
-        {"$ref": "../refs.json#/parameters/id"}
-      ],
-
-      "responses": {
-        "200": {
-          "description": "res"
-        }
-      }
-
-    },
-
-    "put": {
-
-      "x-swagger-router-controller": "permission",
-      "operationId": "update",
-
-      "tags": ["权限资源", "更新操作", "模型方法"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"},
-        {"$ref": "../refs.json#/parameters/id"},
-        {"$ref": "#/parameters/data"}
-      ],
-
-      "responses": {
-        "200": {
-          "description": "res"
-        }
-      }
-
-    },
-
-    "delete": {
-
-      "x-swagger-router-controller": "permission",
-      "operationId": "destroy",
-
-      "tags": ["权限资源", "删除操作", "模型方法"],
-
-      "parameters": [
-        {"$ref": "../refs.json#/parameters/api-key"},
-        {"$ref": "../refs.json#/parameters/id"}
-      ],
-
-      "responses": {
-        "200": {
-          "description": "res"
-        }
-      }
-
-    }
-
+  "operations": {
+    "$ref": "../base/resource-operation.json"
   }
 }

@@ -1,0 +1,11 @@
+{
+
+  "LoginSuccess": {
+    "description": "登录成功"
+  },
+
+  "Error": {
+    "description": "失败"
+  }
+
+}

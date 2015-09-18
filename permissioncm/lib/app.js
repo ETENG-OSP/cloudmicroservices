@@ -5,12 +5,9 @@ var jsonRefs = require('json-refs');
 var _ = require('underscore');
 var Promise = require('bluebird');
 
-var cmSwagger = require('../cmlib/cm-swagger');
 var cmSwaggerSecurity = require('../cmlib/cm-swagger-security');
 
-var securityOptions = cmSwaggerSecurity({
-  cm: cmSwagger(require('./config'))
-});
+var securityOptions = cmSwaggerSecurity(require('./config'));
 
 var routerOptions = {
   controllers: __dirname + '/../controllers'
@@ -36,11 +33,12 @@ function factory() {
       var swaggerString = JSON.stringify(swaggerObject);
       var template = _.template(swaggerString);
       var compiled = JSON.parse(template());
-      // console.log(JSON.stringify(compiled, null, 2));
+      console.log(JSON.stringify(compiled, null, 2));
 
       swaggerTools.initializeMiddleware(compiled, function(middleware) {
         deferred.resolve(middleware);
       });
+
       return deferred.promise;
     })
     .then(function(middleware) {

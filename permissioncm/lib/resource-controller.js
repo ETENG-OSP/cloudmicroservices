@@ -1,4 +1,3 @@
-var _ = require('underscore');
 var collections = require('./collections');
 
 function resourceController(resourceName, populates) {
