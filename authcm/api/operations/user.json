@@ -14,15 +14,25 @@
     "$ref": "../base/resource.json"
   },
 
-  "usable": {
-    "get": {
-      "x-swagger-router-controller": {"$ref": "#/controller"},
-      "operationId": "usable",
-      "tags": ["frontent"],
-
+  "login": {
+    "post": {
+      "operationId": "user_login",
       "parameters": [
         {"$ref": "../refs.json#/parameters/api-key"},
-        {"$ref": "../refs.json#/parameters/id"}
+        {"$ref": "../refs.json#/parameters/credentials"}
+      ],
+      "responses": {
+        "200": {"$ref": "../refs.json#/responses/Success"}
+      }
+    }
+  },
+
+  "signup": {
+    "post": {
+      "operationId": "user_signup",
+      "parameters": [
+        {"$ref": "../refs.json#/parameters/api-key"},
+        {"$ref": "../refs.json#/parameters/credentials"}
       ],
       "responses": {
         "200": {"$ref": "../refs.json#/responses/Success"}

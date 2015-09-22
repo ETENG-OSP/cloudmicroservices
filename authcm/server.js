@@ -4,6 +4,7 @@ var cmlib = require('cmlib');
 
 cmlib.configure({
   id: '1',
+  storeName: 'user',
   secret: 'ZDE4MGZmMTYtNTI5ZC00MmIwLTliZjctNTQzNjBhOTc2ZGFi',
   controllers: __dirname + '/controllers',
   models: __dirname + '/models',

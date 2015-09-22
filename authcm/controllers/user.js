@@ -7,23 +7,25 @@ var cmlib = require('cmlib');
 var controller = cmlib.resourceController('user');
 
 controller.operation('login', function(credentials) {
+  var self = this;
   return Promise
     .all([
-      this.realm(function(User) {return User;}),
+      this.realm(function(user) {return user;}),
       appCollection.get()
     ])
     .spread(function(User, Application) {
       return Promise.all([
         User.login(credentials),
-        Application.findOrCreate({id: appId})
+        Application.findOrCreate({id: self.getCurrentApp()}),
+        cmlib.configure()
       ]);
     })
-    .spread(function(user, application) {
+    .spread(function(user, application, config) {
       var token = jwt.sign({}, application.secret, {
         noTimestamp: true,
         subject: user.id,
         issuer: config.id,
-        audience: appId
+        audience: application.id
       });
       return {
         userId: user.id,
@@ -34,8 +36,8 @@ controller.operation('login', function(credentials) {
 
 controller.operation('signup', function(credentials) {
   return this
-    .realm(function(User) {
-      User.signup(credentials);
+    .realm(function(user) {
+      return user.signup(credentials);
     })
     .then(function(user) {
       return {

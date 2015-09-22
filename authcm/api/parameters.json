@@ -14,6 +14,16 @@
     "in": "header",
     "type": "string",
     "required": true
+  },
+
+  "credentials": {
+    "name": "credentials",
+    "description": "凭证",
+    "in": "body",
+    "schema": {
+      "$ref": "refs.json#/definitions/Credential"
+    }
   }
+
 
 }

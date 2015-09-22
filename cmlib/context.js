@@ -12,6 +12,10 @@ Context.prototype.getParam = function(name) {
   return this.req.swagger.params[name].value;
 };
 
+Context.prototype.getCurrentApp = function() {
+  return this.req.cm.appId;
+};
+
 Context.prototype.realm = function(resolver) {
   var appId = this.req.cm.appId;
 

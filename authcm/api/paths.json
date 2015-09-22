@@ -1,4 +1,10 @@
 {
+  "/auth/login": {
+    "$ref": "operations/user.json#/login"
+  },
+  "/auth/signup": {
+    "$ref": "operations/user.json#/signup"
+  },
   "/api/users": {
     "$ref": "operations/user.json#/resource/collection"
   },

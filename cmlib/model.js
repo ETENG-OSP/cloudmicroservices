@@ -13,10 +13,9 @@ function getter(modelName, appId) {
 }
 
 function createConnection(appId) {
-  var connectionName = 'store-' + appId;
-
   return configure().then(function(appConfig) {
     var models = appConfig.models;
+    var connectionName = appConfig.storeName + 'store-' + appId;
     var waterline = new Waterline();
     var opts = createWaterlineOptions(connectionName);
     var deferred = Promise.defer();
