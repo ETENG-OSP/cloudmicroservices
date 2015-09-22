@@ -1,5 +1,0 @@
-{
-  "definitions": {
-    "credentials": {"<%= '$ref' %>": "#/definitions/credentials"}
-  }
-}

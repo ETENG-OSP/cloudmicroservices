@@ -1,29 +1,8 @@
 {
-  "/api/permissions": {
-    "$ref": "operations/permission.json#/resource/collection"
-  },
-  "/api/permissions/{id}": {
-    "$ref": "operations/permission.json#/resource/model"
-  },
-  "/api/roles": {
-    "$ref": "operations/role.json#/resource/collection"
-  },
-  "/api/roles/{id}": {
-    "$ref": "operations/role.json#/resource/model"
-  },
-  "/api/platforms": {
-    "$ref": "operations/platform.json#/resource/collection"
-  },
-  "/api/platforms/{id}": {
-    "$ref": "operations/platform.json#/resource/model"
-  },
   "/api/users": {
     "$ref": "operations/user.json#/resource/collection"
   },
   "/api/users/{id}": {
     "$ref": "operations/user.json#/resource/model"
-  },
-  "/api/users/{id}/permissions": {
-    "$ref": "operations/user.json#/usable"
   }
 }

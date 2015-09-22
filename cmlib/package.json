@@ -1,0 +1,23 @@
+{
+  "name": "cmlib",
+  "version": "1.0.0",
+  "description": "an opinioned web app framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^2.10.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "graceful-fs": "^4.1.2",
+    "json-refs": "^1.1.0",
+    "jsonwebtoken": "^5.0.5",
+    "sails-disk": "^0.10.8",
+    "swagger-tools": "^0.9.5",
+    "underscore": "^1.8.3",
+    "waterline": "^0.10.26"
+  }
+}

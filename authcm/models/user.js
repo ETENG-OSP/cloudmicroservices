@@ -1,7 +1,7 @@
 var bcrypt = require('bcrypt');
 var uuid = require('uuid');
 
-var Administrator = {
+module.exports = {
 
   identity: 'user',
 
@@ -82,5 +82,3 @@ var Administrator = {
   }
 
 };
-
-module.exports = Administrator;

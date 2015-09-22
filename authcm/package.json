@@ -9,16 +9,11 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "bluebird": "^2.9.34",
-    "body-parser": "^1.13.3",
-    "cors": "^2.7.1",
-    "express": "^4.13.3",
+    "di": "^1.9.0",
     "jsonwebtoken": "^5.0.5",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
-    "request": "^2.61.0",
     "sails-disk": "^0.10.8",
-    "sails-mysql": "^0.11.0",
-    "swagger-tools": "^0.9.5",
     "underscore": "^1.8.3",
     "uuid": "^2.0.1",
     "waterline": "^0.10.26"
@@ -26,9 +21,11 @@
   "devDependencies": {
     "faker": "^3.0.1",
     "mocha": "^2.2.5",
+    "request": "^2.62.0",
     "should": "^7.1.0"
   },
   "scripts": {
+    "postinstall": "cd node_modules && ln -s ../../cmlib/ cmlib",
     "test": "mocha",
     "start": "node server.js"
   },

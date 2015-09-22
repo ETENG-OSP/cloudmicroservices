@@ -1,117 +1,79 @@
-var collections = require('./collections');
+var Controller = require('./controller');
 
-function resourceController(resourceName, populates) {
+function factory(modelName, populates) {
 
-  return {
-    find: find,
-    findOne: findOne,
-    create: create,
-    update: update,
-    destroy: destroy
-  };
+  var resourceController = new Controller();
 
-  function find(req, res, next) {
+  console.log('controller create');
 
-    var args;
-    var appId = req.cm.appId;
+  resourceController.operation('find', function() {
+    console.log('find invoke');
+    find.$inject = [modelName];
+    return this.realm(find);
 
-    return collections(appId)
-      .get(resourceName)
-      .then(function(Model) {
-        var query = Model.find(args);
-        if (Array.isArray(populates)) {
-          populates.forEach(function(populate) {
-            query.populate(populate);
-          });
-        }
-        return query;
-      })
-      .then(function(entities) {
-        return res.json(entities);
-      })
-      .catch(function(err) {
-        return res.status(500).json(err);
-      });
+    function find(Model) {
+      var query = Model.find();
+      if (Array.isArray(populates)) {
+        populates.forEach(function(populate) {
+          query.populate(populate);
+        });
+      }
+      return query;
+    }
+  });
+
+  createOperation.$inject = ['data'];
+  resourceController.operation('create', createOperation);
+  function createOperation(data) {
+    create.$inject = [modelName];
+    return this.realm(create);
+
+    function create(Model) {
+      console.log('create:', data);
+      return Model.create(data);
+    }
   }
 
-  function findOne(req, res, next) {
+  findOneOperation.$inject = ['id'];
+  resourceController.operation('findOne', findOneOperation);
+  function findOneOperation(id) {
+    findOne.$inject = [modelName];
+    return this.realm(findOne);
 
-    var id = req.swagger.params.id.value;
-    var appId = req.cm.appId;
-
-    return collections(appId)
-      .get(resourceName)
-      .then(function(Model) {
-        var query = Model.findOne(id);
-        if (Array.isArray(populates)) {
-          populates.forEach(function(populate) {
-            query.populate(populate);
-          });
-        }
-        return query;
-      })
-      .then(function(entity) {
-        return res.json(entity);
-      })
-      .catch(function(err) {
-        return res.status(500).json(err);
-      });
+    function findOne(Model) {
+      var query = Model.findOne(id);
+      if (Array.isArray(populates)) {
+        populates.forEach(function(populate) {
+          query.populate(populate);
+        });
+      }
+      return query;
+    }
   }
 
-  function create(req, res, next) {
+  updateOperation.$inject = ['id', 'data'];
+  resourceController.operation('update', updateOperation);
+  function updateOperation(id, data) {
+    update.$inject = [modelName];
+    return this.realm(update);
 
-    var data = req.swagger.params.data.value;
-    var appId = req.cm.appId;
-
-    return collections(appId)
-      .get(resourceName)
-      .then(function(Model) {
-        return Model.create(data);
-      })
-      .then(function(entity) {
-        return res.json(entity);
-      })
-      .catch(function(err) {
-        return res.status(500).json(err);
-      });
+    function update(Model) {
+      return Model.update(id, data);
+    }
   }
 
-  function update(req, res, next) {
+  destroyOperation.$inject = ['id'];
+  resourceController.operation('destroy', destroyOperation);
+  function destroyOperation(id) {
+    destroy.$inject = [modelName];
+    return this.realm(destroy);
 
-    var id = req.swagger.params.id.value;
-    var data = req.swagger.params.data.value;
-    var appId = req.cm.appId;
-
-    return collections(appId)
-      .get(resourceName)
-      .then(function(Model) {
-        return Model.update(id, data);
-      })
-      .then(function(entity) {
-        return res.json(entity);
-      })
-      .catch(function(err) {
-        return res.status(500).json(err);
-      });
+    function destroy(Model) {
+      return Model.destroy(id);
+    }
   }
 
-  function destroy(req, res, next) {
-
-    var id = req.swagger.params.id.value;
-    var appId = req.cm.appId;
-
-    return collections(appId)
-      .get(resourceName)
-      .then(function(Model) {
-        return Model.destroy(id);
-      })
-      .then(function(entity) {
-        return res.json(entity);
-      })
-      .catch(function(err) {
-        return res.status(500).json(err);
-      });
-  }
+  return resourceController;
 }
 
-module.exports = resourceController;
+module.exports = factory;

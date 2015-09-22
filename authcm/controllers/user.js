@@ -1,21 +1,15 @@
 var jwt = require('jsonwebtoken');
 var Promise = require('bluebird');
 
-var config = require('../lib/config');
-var appCollection = require('../lib/application');
-var collections = require('../lib/collections');
-var resourceController = require('../lib/resource-controller');
+var appCollection = require('../utils/application');
+var cmlib = require('cmlib');
 
-var controller = resourceController('user');
+var controller = cmlib.resourceController('user');
 
-function login(req, res, next) {
-
-  var credentials = req.swagger.params.credentials.value;
-  var appId = req.cm.appId;
-
+controller.operation('login', function(credentials) {
   return Promise
     .all([
-      collections(appId).get('user'),
+      this.realm(function(User) {return User;}),
       appCollection.get()
     ])
     .spread(function(User, Application) {
@@ -31,34 +25,23 @@ function login(req, res, next) {
         issuer: config.id,
         audience: appId
       });
-
-      return res.json({
+      return {
         userId: user.id,
         token: token
-      });
-    })
-    .catch(next);
-}
+      };
+    });
+});
 
-function signup(req, res, next) {
-
-  var credentials = req.swagger.params.credentials.value;
-  var appId = req.cm.appId;
-
-  return collections(appId)
-    .get('user')
-    .then(function(User) {
-      return User.signup(credentials);
+controller.operation('signup', function(credentials) {
+  return this
+    .realm(function(User) {
+      User.signup(credentials);
     })
     .then(function(user) {
-      return res.json({
+      return {
         userId: user.id
-      });
-    })
-    .catch(next);
-}
-
-controller.login = login;
-controller.signup = signup;
+      };
+    });
+});
 
 module.exports = controller;

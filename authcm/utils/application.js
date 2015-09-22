@@ -3,7 +3,10 @@ var waterline = new Waterline();
 var Application = Waterline.Collection.extend(require('../models/application'));
 waterline.loadCollection(Application);
 
+// console.log('create application store');
+
 var collection = new Promise(function(resolve, reject) {
+  // console.log(Application);
   waterline.initialize({
     adapters: {
       disk: require('sails-disk')
@@ -14,6 +17,7 @@ var collection = new Promise(function(resolve, reject) {
       }
     }
   }, function(err, ontology) {
+    // console.log('after init');
     if (err) {
       return reject(err);
     }

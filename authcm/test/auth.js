@@ -3,7 +3,7 @@ var request = Promise.promisifyAll(require('request'));
 var should = require('should');
 var faker = require('faker');
 var jwt = require('jsonwebtoken');
-var config = require('../lib/config');
+var config = require('../config');
 
 describe('auth', function() {
 
