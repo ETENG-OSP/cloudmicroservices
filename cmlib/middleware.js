@@ -16,6 +16,8 @@ function factory(opts) {
   var api = opts.application.api;
   var secret = opts.platform.secret;
 
+  console.log('using secret:', secret);
+
   var securityOptions = {cmApiKey: security(secret)};
   var routerOptions = {controllers: controllers};
   var validatorOptions = {validateResponse: false};
