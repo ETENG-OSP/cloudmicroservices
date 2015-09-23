@@ -6,6 +6,17 @@ var config = nconf.get();
 
 var controller = cmlib.resourceController('user', ['roles'], config);
 
+controller.operation('update', function(id, data) {
+  return this
+    .realm(function(user) {
+      return user
+        .findOrCreate(id)
+        .then(function() {
+          return user.update(id, data);
+        });
+    });
+});
+
 controller.operation('usable', function(id) {
   var Role, Platform;
 

@@ -10,6 +10,7 @@ function Context(req, res, next, config) {
 
 Context.prototype.getParam = function(name) {
   console.log('getting:', name);
+  console.log(this.req.swagger.params[name]);
   return this.req.swagger.params[name].value;
 };
 

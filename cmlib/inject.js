@@ -42,7 +42,9 @@ function getArguments(fn) {
   if (args.length === 0) {
     return [];
   }
-  return args.split(FN_ARG_SPLIT);
+  return args.split(FN_ARG_SPLIT).map(function(arg) {
+    return arg.trim();
+  });
 }
 
 module.exports = inject;
