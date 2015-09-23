@@ -15,6 +15,7 @@
     "graceful-fs": "^4.1.2",
     "json-refs": "^1.1.0",
     "jsonwebtoken": "^5.0.5",
+    "sails-disk": "^0.10.8",
     "swagger-tools": "^0.9.5",
     "underscore": "^1.8.3",
     "waterline": "^0.10.26"

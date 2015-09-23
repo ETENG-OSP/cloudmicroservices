@@ -1,4 +1,5 @@
 var collections = require('../lib/collections');
+var Promise = require('bluebird');
 
 function create(args) {
   return collections
@@ -45,12 +46,28 @@ function update(args) {
 }
 
 function addFeature(appId, featureId) {
+
+  // return Promise
+  //   .all([
+  //     collections.get('application'),
+  //     collections.get('feature')
+  //   ])
+  //   .spread(function(Application, Feature) {
+  //     return Promise.all([
+  //       Application.findOne(appId).populate('features'),
+  //       Feature.findOne(featureId)
+  //     ]);
+  //   })
+  //   .spread(function(application, feature) {
+  //     return feature.install(application);
+  //   });
+
   return collections
     .get('application')
     .then(function(Application) {
       return Application
         .findOne(appId)
-        .populate('features')
+        .populate('features');
     })
     .then(function(application) {
       application.features.add(featureId);
@@ -64,7 +81,7 @@ function removeFeature(appId, featureId) {
     .then(function(Application) {
       return Application
         .findOne(appId)
-        .populate('features')
+        .populate('features');
     })
     .then(function(application) {
       application.features.remove(featureId);

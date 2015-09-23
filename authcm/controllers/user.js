@@ -46,4 +46,41 @@ controller.operation('signup', function(credentials) {
     });
 });
 
+controller.operation('verify', function(accessToken) {
+  var self = this;
+  return cmlib
+    .configure()
+    .then(function(config) {
+      var payload = jwt.verify(accessToken, config.secret, {
+        issuer: config.id,
+        audience: self.getCurrentApp()
+      });
+
+      return self.realm(function(user) {
+        return user.update(payload.sub, {
+          active: true
+        });
+      });
+    });
+});
+
+controller.operation('install', function() {
+  var payload = this.req.cm.payload;
+  console.log(payload);
+  return appCollection
+    .get()
+    .then(function(Application) {
+      return Application.findOrCreate({
+        id: payload.aud,
+        secret: payload.secret
+      });
+    })
+    .then(function() {
+      console.log(arguments)
+    })
+    .catch(function(err) {
+      console.log('err:',err);
+    });
+});
+
 module.exports = controller;

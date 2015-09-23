@@ -14,6 +14,18 @@
     "$ref": "../base/resource.json"
   },
 
+  "install": {
+    "post": {
+      "operationId": "user_install",
+      "parameters": [
+        {"$ref": "../refs.json#/parameters/api-key"}
+      ],
+      "responses": {
+        "200": {"$ref": "../refs.json#/responses/Success"}
+      }
+    }
+  },
+
   "login": {
     "post": {
       "operationId": "user_login",

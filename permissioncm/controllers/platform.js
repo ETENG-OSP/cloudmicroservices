@@ -1,5 +1,5 @@
-var resourceController = require('../lib/resource-controller');
+var cmlib = require('cmlib');
 
-var controller = resourceController('platform');
+var controller = cmlib.resourceController('platform');
 
 module.exports = controller;

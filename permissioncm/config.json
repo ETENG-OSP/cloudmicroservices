@@ -1,0 +1,20 @@
+{
+
+  "platform": {
+    "id": "1",
+    "secret": "ZTJmNDkyMzUtMDRiNy00MDM4LWFhYjQtZTkwYjc5Njk3NDU4"
+  },
+
+  "application": {
+    "port": 3001,
+    "controllers": "./controllers",
+    "models": "./models",
+    "api": "./api/swagger.json"
+  },
+
+  "store": {
+    "prefix": "permission",
+    "adapter": "sails-disk"
+  }
+
+}

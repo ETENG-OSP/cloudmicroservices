@@ -24,6 +24,7 @@ var Application = {
         return new Buffer(uuid.v4()).toString('base64');
       }
     }
+
   }
 
 };

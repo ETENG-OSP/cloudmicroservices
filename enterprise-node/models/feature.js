@@ -1,4 +1,7 @@
 var uuid = require('uuid');
+var Promise = require('bluebird');
+var request = Promise.promisifyAll(require('request'));
+var jwt = require('jsonwebtoken');
 
 var Feature = {
 
@@ -25,6 +28,34 @@ var Feature = {
     applications: {
       collection: 'application',
       via: 'features'
+    },
+
+    install: function(application) {
+      var url = this.url;
+      var self = this;
+
+      var token = jwt.sign({
+        secret: application.secret
+      }, this.secret, {
+        issuer: this.id,
+        audience: application.id
+      });
+      console.log(url);
+      console.log(token);
+
+      return request
+        .postAsync(url, {
+          body: {},
+          headers: {
+            'cm-api-key': token
+          },
+          json: true
+        })
+        .then(function(response, body) {
+          console.log(response);
+          application.features.add(self.id);
+          return application.save();
+        });
     }
 
   },

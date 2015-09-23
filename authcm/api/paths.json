@@ -1,4 +1,7 @@
 {
+  "/install": {
+    "$ref": "operations/user.json#/install"
+  },
   "/auth/login": {
     "$ref": "operations/user.json#/login"
   },

@@ -1,27 +1,20 @@
 var _ = require('underscore');
+var cmlib = require('cmlib');
 
-var resourceController = require('../lib/resource-controller');
-var collections = require('../lib/collections');
+var controller = cmlib.resourceController('user', ['roles']);
 
-var controller = resourceController('user', ['roles']);
+controller.operation('usable', function(id) {
+  var Role, Platform;
 
-controller.usable = function(req, res, next) {
-
-  var id = req.swagger.params.id.value;
-  var appId = req.cm.appId;
-  var Platform;
-
-  return collections(appId)
-    .get('user')
-    .then(function(User) {
-      return Promise.all([
-        User.findOrCreate(id).populate('roles'),
-        collections(appId).get('role'),
-        collections(appId).get('platform')
-      ]);
+  return this
+    .realm(function(user, role, platform) {
+      Role = role;
+      Platform = platform;
+      return user
+        .findOrCreate(id)
+        .populate('roles');
     })
-    .spread(function(user, Role, _Platform) {
-      Platform = _Platform;
+    .then(function(user) {
       return Promise.all(user.roles.map(function(role) {
         return Role
           .findOne(role.id)
@@ -48,11 +41,8 @@ controller.usable = function(req, res, next) {
             return permission;
           });
       }));
-    })
-    .then(function(permissions) {
-      return res.json(permissions);
-    })
-    .catch(next);
-};
+    });
+
+});
 
 module.exports = controller;

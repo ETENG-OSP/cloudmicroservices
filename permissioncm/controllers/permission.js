@@ -1,5 +1,5 @@
-var resourceController = require('../lib/resource-controller');
+var cmlib = require('cmlib');
 
-var controller = resourceController('permission', ['roles']);
+var controller = cmlib.resourceController('permission', ['roles']);
 
 module.exports = controller;

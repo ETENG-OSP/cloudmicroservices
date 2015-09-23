@@ -1,22 +1,22 @@
 var pp = require('preprocess');
 
 var context = {
-  DEV: true,
+  DEV: true
 };
 
-pp.preprocessFileSync(
-  'authcm/config.template.js',
-  'authcm/config.js',
-  context
-);
-pp.preprocessFileSync(
-  'permissioncm/config.template.js',
-  'permissioncm/config.js',
-  context
-);
+// pp.preprocessFileSync(
+//   'authcm/config.template.js',
+//   'authcm/config.js',
+//   context
+// );
+// pp.preprocessFileSync(
+//   'permissioncm/config.template.js',
+//   'permissioncm/config.js',
+//   context
+// );
 
 pp.preprocessFileSync(
-  'dashboardcm/public/index.template.html',
+  'dashboardcm/public/index.template',
   'dashboardcm/public/index.html',
   context
 );

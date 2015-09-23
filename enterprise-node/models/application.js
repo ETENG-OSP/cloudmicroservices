@@ -18,6 +18,14 @@ var Application = {
       dominant: true
     },
 
+    secret: {
+      type: 'string',
+      required: true,
+      defaultsTo: function() {
+        return new Buffer(uuid.v4()).toString('base64');
+      }
+    },
+
     owner: {
       model: 'administrator'
     }

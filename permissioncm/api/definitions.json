@@ -36,8 +36,12 @@
 
   "User": {
     "properties": {
-      "id": {"type": "string"},
-      "username": {"type": "string"}
+      "roles": {
+        "type": "array",
+        "items": {
+          "$ref": "refs.json#/definitions/id"
+        }
+      }
     }
   },
 

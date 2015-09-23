@@ -6,22 +6,21 @@ var _ = require('underscore');
 var Promise = require('bluebird');
 var path = require('path');
 
-var security = require('./security');
+function factory(appConfig) {
 
-function factory(opts) {
+  var securityOptions;
+  var routerOptions;
+  var validatorOptions;
 
-  opts = opts || {};
+  var controllers = appConfig.controllers;
+  var api = appConfig.api;
 
-  var controllers = opts.application.controllers;
-  var api = opts.application.api;
-  var secret = opts.platform.secret;
-
-  var securityOptions = {cmApiKey: security(secret)};
-  var routerOptions = {controllers: controllers};
-  var validatorOptions = {validateResponse: false};
+  securityOptions = {cmApiKey: require('./cm-api-key')};
+  routerOptions = {controllers: controllers};
+  validatorOptions = {validateResponse: false};
 
   return jsonRefs
-    .resolveRefs(require.main.require(api), {
+    .resolveRefs(require(api), {
       location: path.dirname(api)
     })
     .then(function(results) {

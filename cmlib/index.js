@@ -1,3 +1,3 @@
 exports.resourceController = require('./resource-controller');
-exports.configure = require('./configure');
 exports.middleware = require('./middleware');
+exports.startup = require('./startup');

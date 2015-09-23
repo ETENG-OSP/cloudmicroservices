@@ -9,7 +9,7 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "bluebird": "^2.9.34",
-    "di": "^1.9.0",
+    "express": "^4.13.3",
     "jsonwebtoken": "^5.0.5",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
@@ -25,7 +25,7 @@
     "should": "^7.1.0"
   },
   "scripts": {
-    "postinstall": "cd node_modules && ln -s ../../cmlib/ cmlib",
+    "postinstall": "npm ln ../cmlib/",
     "test": "mocha",
     "start": "node server.js"
   },
