@@ -9,7 +9,6 @@ angular
     storeHost: 'http://localhost:3004/',
     permissionHost: 'http://localhost:3001/',
     authHost: 'http://localhost:3002/'
-
   })
   .config(appConfig)
   .run(appRun);

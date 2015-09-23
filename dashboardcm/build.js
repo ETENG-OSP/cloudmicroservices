@@ -4,7 +4,7 @@ var _ = require('underscore');
 
 nconf.env();
 
-if (nconf.get('NODE_ENV') === 'production') {
+if (nconf.get('NODE_ENV') === 'test') {
   var context = {
     hostname: '192.168.0.35'
   };
@@ -14,9 +14,9 @@ if (nconf.get('NODE_ENV') === 'production') {
   };
 }
 
-var src = 'dashboardcm/public/index.template';
-var dest = 'dashboardcm/public/index.html';
+var src = __dirname + '/public/index.template';
+var dest = __dirname + '/public/index.html';
 
-var template = _.template(fs.readFileSync(src));
+var template = _.template(fs.readFileSync(src).toString());
 var compiled = template(context);
-fs.writeFileSync(dest);
+fs.writeFileSync(dest, compiled);

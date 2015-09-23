@@ -15,6 +15,7 @@
     "jsonwebtoken": "^5.0.5",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
+    "nconf": "^0.8.0",
     "request": "^2.61.0",
     "sails-disk": "^0.10.8",
     "sails-memory": "^0.10.5",

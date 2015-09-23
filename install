@@ -1,0 +1,17 @@
+cd authcm
+npm prune
+npm install
+npm ln ../cmlib
+
+cd ../dashboardcm
+npm prune
+npm install
+
+cd ../enterprise-node
+npm prune
+npm install
+
+cd ../permissioncm
+npm prune
+npm install
+npm ln ../cmlib
