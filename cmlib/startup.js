@@ -1,6 +1,5 @@
 var Promise = require('bluebird');
 var express = require('express');
-var nconf = require('nconf');
 
 var middleware = require('./middleware');
 

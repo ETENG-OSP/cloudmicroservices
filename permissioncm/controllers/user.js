@@ -1,7 +1,10 @@
 var _ = require('underscore');
 var cmlib = require('cmlib');
+var nconf = require('nconf');
 
-var controller = cmlib.resourceController('user', ['roles']);
+var config = nconf.get();
+
+var controller = cmlib.resourceController('user', ['roles'], config);
 
 controller.operation('usable', function(id) {
   var Role, Platform;

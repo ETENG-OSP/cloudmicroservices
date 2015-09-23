@@ -1,42 +1,33 @@
 {
-  "name": "enterprise-node",
+  "name": "authcm",
   "version": "1.0.0",
   "description": "企业用户系统，具有权限。nodejs 实现，使用 jwt。",
-  "main": "startup.js",
+  "main": "config.template.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
+    "bluebird": "^2.10.0",
     "bcrypt": "^0.8.5",
-    "bluebird": "^2.9.34",
-    "express": "^4.13.3",
+    "cmlib": "^1.0.0",
+    "faker": "^3.0.1",
     "jsonwebtoken": "^5.0.5",
     "moment": "^2.10.6",
-    "morgan": "^1.6.1",
+    "nconf": "^0.8.0",
+    "request": "^2.62.0",
     "sails-disk": "^0.10.8",
+    "morgan": "^1.6.1",
+    "should": "^7.1.0",
     "underscore": "^1.8.3",
-    "uuid": "^2.0.1",
-    "waterline": "^0.10.26"
+    "waterline": "^0.10.26",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
-    "faker": "^3.0.1",
-    "mocha": "^2.2.5",
-    "request": "^2.62.0",
-    "should": "^7.1.0"
+    "mocha": "^2.3.2"
   },
   "scripts": {
-    "postinstall": "npm ln ../cmlib/",
-    "test": "mocha",
-    "start": "node server.js"
+    "test": "mocha"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gengen1988/enterprise-node.git"
-  },
-  "author": "Gen Liu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gengen1988/enterprise-node/issues"
-  },
-  "homepage": "https://github.com/gengen1988/enterprise-node#readme"
+  "author": "",
+  "license": "ISC"
 }

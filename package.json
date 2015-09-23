@@ -4,7 +4,6 @@
   "description": "",
   "main": "startup.js",
   "dependencies": {
-    "nconf": "^0.8.0",
     "preprocess": "^3.0.2",
     "sails-disk": "^0.10.8"
   },

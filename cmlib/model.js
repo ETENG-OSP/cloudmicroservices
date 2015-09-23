@@ -1,22 +1,20 @@
 var Promise = require('bluebird');
 var Waterline = require('waterline');
-console.log('requiring nconf');
-var nconf = require('nconf');
 
 var models = {};
 
-function getter(modelName, appId) {
-  models[appId] = models[appId] || createConnection(appId);
+function getter(modelName, appId, config) {
+  models[appId] = models[appId] || createConnection(appId, config);
   return models[appId]
     .then(function(ontology) {
       return ontology.collections[modelName];
     });
 }
 
-function createConnection(appId) {
-  var models = nconf.get('application:models');
-  var prefix = nconf.get('store:prefix');
-  var adapter = nconf.get('store:adapter');
+function createConnection(appId, config) {
+  var models = config.application.models;
+  var prefix = config.store.prefix;
+  var adapter = config.store.adapter;
 
   var connectionName = prefix + 'store-' + appId;
   var waterline = new Waterline();

@@ -1,5 +1,8 @@
 var cmlib = require('cmlib');
+var nconf = require('nconf');
 
-var controller = cmlib.resourceController('platform');
+var config = nconf.get();
+
+var controller = cmlib.resourceController('platform', null, config);
 
 module.exports = controller;

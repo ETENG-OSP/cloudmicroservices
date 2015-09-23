@@ -1,10 +1,11 @@
 var inject = require('./inject');
 var model = require('./model');
 
-function Context(req, res, next) {
+function Context(req, res, next, config) {
   this.req = req;
   this.res = res;
   this.next = next;
+  this.config = config;
 }
 
 Context.prototype.getParam = function(name) {
@@ -17,6 +18,7 @@ Context.prototype.getCurrentApp = function() {
 };
 
 Context.prototype.realm = function(resolver) {
+  var config = this.config;
   var appId = this.req.cm.appId;
 
   console.log('realm');
@@ -24,7 +26,7 @@ Context.prototype.realm = function(resolver) {
 
   return inject(resolver, function(name) {
     console.log('injecting:', name);
-    return model(name, appId);
+    return model(name, appId, config);
   });
 };
 

@@ -1,8 +1,11 @@
 var Promise = require('bluebird');
 var cmlib = require('cmlib');
 var _ = require('underscore');
+var nconf = require('nconf');
 
-var controller = cmlib.resourceController('role', ['permissions', 'users']);
+var config = nconf.get();
+
+var controller = cmlib.resourceController('role', ['permissions', 'users'], config);
 
 // collection.override('update', function(data) {
 //

@@ -1,8 +1,8 @@
 var Controller = require('./controller');
 
-function factory(modelName, populates) {
+function factory(modelName, populates, config) {
 
-  var resourceController = new Controller();
+  var resourceController = new Controller(config);
 
   console.log('controller create');
 

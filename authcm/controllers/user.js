@@ -1,10 +1,13 @@
 var jwt = require('jsonwebtoken');
 var Promise = require('bluebird');
+var cmlib = require('cmlib');
+var nconf = require('nconf');
 
 var appCollection = require('../utils/application');
-var cmlib = require('cmlib');
 
-var controller = cmlib.resourceController('user');
+var config = nconf.get();
+
+var controller = cmlib.resourceController('user', null, config);
 
 controller.operation('login', function(credentials) {
   var self = this;
