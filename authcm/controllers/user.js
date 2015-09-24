@@ -27,7 +27,7 @@ controller.operation('login', function(credentials) {
       ]);
     })
     .spread(function(user, application) {
-      var token = jwt.sign({}, secret, {
+      var token = jwt.sign({}, application.secret, {
         noTimestamp: true,
         subject: user.id,
         issuer: featureId,
