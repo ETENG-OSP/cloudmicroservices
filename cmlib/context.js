@@ -1,4 +1,4 @@
-var inject = require('./inject');
+var composite = require('composite');
 var model = require('./model');
 
 function Context(req, res, next, config) {
@@ -25,7 +25,7 @@ Context.prototype.realm = function(resolver) {
   console.log('realm');
   console.log(resolver);
 
-  return inject(resolver, function(name) {
+  return composite.inject(resolver, function(name) {
     console.log('injecting:', name);
     return model(name, appId, config);
   });

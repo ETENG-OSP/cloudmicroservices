@@ -1,5 +1,5 @@
 {
-  "name": "cmlib",
+  "name": "composite",
   "version": "1.0.0",
   "description": "an opinioned web app framework",
   "main": "index.js",

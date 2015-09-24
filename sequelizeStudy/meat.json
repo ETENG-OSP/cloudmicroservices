@@ -1,0 +1,8 @@
+{
+  "title": "meat",
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

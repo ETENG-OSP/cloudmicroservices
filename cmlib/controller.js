@@ -1,6 +1,6 @@
 var Promise = require('bluebird');
 var Context = require('./context');
-var inject = require('./inject');
+var composite = require('composite');
 
 function Controller(config) {
   return {
@@ -11,7 +11,7 @@ function Controller(config) {
     this[id] = function(req, res, next) {
       console.log('controller invoke');
       var context = new Context(req, res, next, config);
-      var result = inject(resolver, context.getParam, context);
+      var result = composite.inject(resolver, context.getParam, context);
       Promise
         .resolve(result)
         .then(function(results) {

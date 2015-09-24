@@ -1,4 +1,1 @@
-function factory(appConfig) {
-};
-
-module.exports = factory;
+exports.inject = require('./inject');

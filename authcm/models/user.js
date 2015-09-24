@@ -49,15 +49,8 @@ module.exports = {
 
   },
 
-  beforeCreate: function(values, next) {
-    bcrypt.hash(values.password, 8, function(err, hash) {
-      if (err) {
-        return next(err);
-      }
-      values.password = hash;
-      next();
-    });
-  },
+  beforeUpdate: hashPassword,
+  beforeCreate: hashPassword,
 
   login: function(credentials) {
     return this
@@ -82,3 +75,13 @@ module.exports = {
   }
 
 };
+
+function hashPassword(values, next) {
+  bcrypt.hash(values.password, 8, function(err, hash) {
+    if (err) {
+      return next(err);
+    }
+    values.password = hash;
+    next();
+  });
+}

@@ -38,11 +38,13 @@ function inject(resolver, getter, context) {
 
 function getArguments(fn) {
   var args = extractArgs(fn)[1];
-  console.log(args);
+  // console.log(args);
   if (args.length === 0) {
     return [];
   }
-  return args.split(FN_ARG_SPLIT);
+  return args.split(FN_ARG_SPLIT).map(function(arg) {
+    return arg.trim();
+  });
 }
 
 module.exports = inject;

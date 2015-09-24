@@ -14,11 +14,13 @@ function myInterceptor($injector, $q, config) {
         return config;
       }
 
-      config.url = config.url.replace(host, alternateHost);
-      config.headers['cm-api-key'] = alternateToken;
-      console.log('after:', config);
+      var alternateConfig = angular.copy(config);
 
-      return $http(config).then(function() {
+      alternateConfig.url = alternateConfig.url.replace(host, alternateHost);
+      alternateConfig.headers['cm-api-key'] = alternateToken;
+      console.log('after:', alternateConfig);
+
+      return $http(alternateConfig).then(function() {
         return config;
       });
     },

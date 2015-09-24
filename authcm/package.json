@@ -2,7 +2,7 @@
   "name": "authcm",
   "version": "1.0.0",
   "description": "企业用户系统，具有权限。nodejs 实现，使用 jwt。",
-  "main": "config.template.js",
+  "main": "startup.js",
   "directories": {
     "test": "test"
   },
