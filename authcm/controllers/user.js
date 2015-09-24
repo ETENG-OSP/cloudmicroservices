@@ -11,6 +11,10 @@ var controller = cmlib.resourceController('user', null, config);
 
 controller.operation('login', function(credentials) {
   var self = this;
+
+  var secret = config.platform.secret;
+  var featureId = config.platform.id;
+
   return Promise
     .all([
       this.realm(function(user) {return user;}),
@@ -19,15 +23,14 @@ controller.operation('login', function(credentials) {
     .spread(function(User, Application) {
       return Promise.all([
         User.login(credentials),
-        Application.findOrCreate({id: self.getCurrentApp()}),
-        cmlib.configure()
+        Application.findOrCreate({id: self.getCurrentApp()})
       ]);
     })
-    .spread(function(user, application, config) {
-      var token = jwt.sign({}, application.secret, {
+    .spread(function(user, application) {
+      var token = jwt.sign({}, secret, {
         noTimestamp: true,
         subject: user.id,
-        issuer: config.id,
+        issuer: featureId,
         audience: application.id
       });
       return {
