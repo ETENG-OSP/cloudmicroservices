@@ -2,8 +2,8 @@
 
   "User": {
     "properties": {
-      "id": {"type": "string"},
-      "username": {"type": "string"}
+      "username": {"type": "string"},
+      "password": {"type": "password"}
     }
   },
 
