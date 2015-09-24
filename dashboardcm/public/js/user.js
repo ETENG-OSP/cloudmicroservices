@@ -23,7 +23,7 @@ function userConfig(nga, admin, config) {
     .editionView()
     .fields([
       nga.field('username'),
-      nga.field('password'),
+      nga.field('password', 'password'),
       nga.field('roles', 'reference_many')
         .targetEntity(admin.getEntity('roles'))
         .targetField(nga.field('name'))

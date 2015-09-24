@@ -1,3 +1,6 @@
+npm prune
+npm ln composite
+
 cd authcm
 npm prune
 npm ln ../cmlib
